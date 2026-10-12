@@ -4,19 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PayFree | Your Screen Time. Your Utility Bills. Zeroed.</title>
-    <!-- Tailwind CSS CDN for styling matching the mobile dark UI screenshot -->
+    <!-- Tailwind CSS for Dark Theme -->
     <script src="https://tailwindcss.com"></script>
     <style>
         body {
             background-color: #0d1b2a;
             color: #ffffff;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
         }
     </style>
 </head>
 <body class="min-h-screen flex flex-col justify-between p-6 max-w-md mx-auto">
 
-    <!-- Top Navigation Header -->
+    <!-- Header -->
     <header class="flex justify-between items-center py-4 text-sm font-semibold tracking-wide text-gray-400">
         <div class="text-white text-lg font-bold flex items-center gap-1">
             <span class="bg-blue-600 w-3 h-3 rounded-full inline-block"></span> Pay Free
@@ -24,7 +24,7 @@
         <div class="bg-slate-800 px-3 py-1 rounded-full text-xs border border-slate-700">Stealth Phase 2026</div>
     </header>
 
-    <!-- Main Hero Text Section -->
+    <!-- Hero Section -->
     <main class="text-center my-8">
         <h1 class="text-3xl font-extrabold tracking-tight leading-tight mb-4">
             Your Screen Time.<br>Your Utility Bills. <span class="text-cyan-400">Zeroed.</span>
@@ -34,29 +34,25 @@
         </p>
     </main>
 
-    <!-- Waitlist Registration Form Component -->
+    <!-- Waitlist Form Section with your active Formspree Link -->
     <section class="bg-slate-900/60 border border-slate-800 rounded-2xl p-6 shadow-xl backdrop-blur-sm mb-8">
         <h2 class="text-xl font-bold tracking-tight text-white mb-2 text-left">Join the Exclusive Pre-Launch Waitlist</h2>
         <p class="text-xs text-gray-400 mb-6 text-left">First 2,500 users unlock Gold Tier benefits (2x faster token multipliers upon launch)</p>
         
-        <!-- FORMSPREE ACTION ENDPOINT INTEGRATED -->
-        <form action="https://formspree.io/f/mvkzbwvg" method="POST" class="space-y-4">
+        <form action="https://formspree.io" method="POST" class="space-y-4">
             
-            <!-- First Field: Full Name -->
             <div class="flex flex-col gap-1.5">
                 <label for="full-name" class="text-xs font-bold tracking-wider text-gray-400 uppercase">Full Name</label>
                 <input type="text" id="full-name" name="name" required placeholder="Enter your name" 
                        class="w-full bg-slate-800/80 border border-slate-700/60 rounded-xl px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-cyan-400 text-sm">
             </div>
 
-            <!-- Second Field: Mobile Number -->
             <div class="flex flex-col gap-1.5">
                 <label for="mobile-number" class="text-xs font-bold tracking-wider text-gray-400 uppercase">Mobile Number</label>
                 <input type="tel" id="mobile-number" name="mobile" required placeholder="Enter 10-digit number" 
                        class="w-full bg-slate-800/80 border border-slate-700/60 rounded-xl px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-cyan-400 text-sm">
             </div>
 
-            <!-- Third Field: Network Operator -->
             <div class="flex flex-col gap-1.5">
                 <label for="network-operator" class="text-xs font-bold tracking-wider text-gray-400 uppercase">Network Operator</label>
                 <select id="network-operator" name="operator" required 
@@ -69,14 +65,13 @@
                 </select>
             </div>
 
-            <!-- Form Action Trigger Button -->
             <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3.5 px-4 rounded-xl shadow-lg transform transition-all active:scale-95 text-sm mt-4">
                 Reserve My Free Recharge Slot 🚀
             </button>
         </form>
     </section>
 
-    <!-- App Process Metrics & Workflow Timeline -->
+    <!-- Workflow Timeline -->
     <section class="space-y-4 mb-8 text-left">
         <div class="flex gap-4 p-4 rounded-xl bg-slate-900/30 border border-slate-800/50">
             <div class="text-cyan-400 font-black text-xl tracking-tight">01</div>
@@ -103,7 +98,7 @@
         </div>
     </section>
 
-    <!-- Footer Area (Anonymized & DPDP Compliant) -->
+    <!-- Anonymized Footer -->
     <footer class="text-center text-xs text-gray-500 border-t border-slate-800 pt-6 pb-4 space-y-2">
         <p class="px-4 leading-relaxed text-gray-400">100% Secure. Encrypted under Indian Digital Personal Data Protection (DPDP) Act Guidelines.</p>
         <p>&copy; 2026 PayFree Technologies. All Rights Reserved.</p>
