@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PayFree | Your Screen Time. Your Utility Bills. Zeroed.</title>
+    <style>
+        :root {
+            --primary: #0B172C;
+            --accent: #00F2FE;
+            --text-main: #FFFFFF;
+            --text-sub: #A0AEC0;
+            --card-bg: #1A202C;
+            --input-bg: #2D3748;
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: var(--primary);
+            color: var(--text-main);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 2rem 5%;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            letter-spacing: -1px;
+        }
+
+        .logo span {
+            color: var(--accent);
+        }
+
+        .badge {
+            background: rgba(0, 242, 254, 0.1);
+            color: var(--accent);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            border: 1px solid rgba(0, 242, 254, 0.2);
+        }
+
+        .hero {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding: 5rem 5% 3rem 5%;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            letter-spacing: -2px;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+        }
+
+        h1 span {
+            color: var(--accent);
+        }
+
+        .subheadline {
+            font-size: 1.25rem;
+            color: var(--text-sub);
+            margin-bottom: 3rem;
+            max-width: 700px;
+        }
+
+        .form-container {
+            background: var(--card-bg);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 16px;
+            padding: 2.5rem;
+            width: 100%;
+            max-width: 550px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+            text-align: left;
+            margin-bottom: 5rem;
+        }
+
+        .form-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .form-subtitle {
+            font-size: 0.9rem;
+            color: var(--text-sub);
+            margin-bottom: 2rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.25rem;
+        }
+
+        label {
+            display: block;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--text-sub);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 0.85rem 1rem;
+            background: var(--input-bg);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            color: white;
+            font-size: 1rem;
+            outline: none;
+            transition: border 0.3s ease;
+        }
+
+        input:focus, select:focus {
+            border-color: var(--accent);
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 1rem;
+            background: var(--accent);
+            color: var(--primary);
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-top: 1rem;
+            transition: opacity 0.2s ease;
+        }
+
+        .submit-btn:hover {
+            opacity: 0.9;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            padding: 4rem 5%;
+            background: rgba(255,255,255,0.02);
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            width: 100vw;
+            position: relative;
+            left: 50%;
+            right: 50%;
+            margin-left: -50vw;
+            margin-right: -50vw;
+        }
+
+        .feature-card {
+            max-width: 350px;
+            margin: 0 auto;
+            text-align: center;
+            padding: 1.5rem;
+        }
+
+        .step-num {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: rgba(0, 242, 254, 0.2);
+            margin-bottom: 0.5rem;
+        }
+
+        .feature-card h3 {
+            font-size: 1.25rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .feature-card p {
+            color: var(--text-sub);
+            font-size: 0.95rem;
+        }
+
+        footer {
+            padding: 3rem 5%;
+            text-align: center;
+            color: var(--text-sub);
+            font-size: 0.85rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            margin-top: 3rem;
+            width: 100%;
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 2.2rem; }
+            .features { grid-template-columns: 1fr; gap: 3rem; }
+            .form-container { padding: 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">Pay<span>Free</span></div>
+        <div class="badge">Stealth Phase 2026</div>
+    </header>
+
+    <main class="hero">
+        <h1>Your Screen Time. <br>Your Utility Bills. <span>Zeroed.</span></h1>
+        <p class="subheadline">India's premium micro-task network that converts 15 minutes of your daily digital engagement into automated mobile, DTH, and Wi-Fi recharges. No out-of-pocket expenses. Just pure reward substitution.</p>
+        
+        <div class="form-container">
+            <div class="form-title">Join the Exclusive Pre-Launch Waitlist</div>
+            <div class="form-subtitle">First 2,500 users unlock Gold Tier benefits (2x faster token multipliers upon launch)</div>
+            
+            <form onsubmit="event.preventDefault(); alert('Success! Your PayFree free recharge slot has been reserved.');">
+                <div class="form-group">
+                    <label>Full Name</label>
+                    <input type="text" placeholder="Enter your name" required>
+                </div>
+                <div class="form-group">
+                    <label>Mobile Number</label>
+                    <input type="tel" placeholder="Enter 10-digit number" pattern="[0-9]{10}" required>
+                </div>
+                <div class="form-group">
+                    <label>Network Operator</label>
+                    <select required>
+                        <option value="" disabled selected>Select Operator</option>
+                        <option value="jio">Jio</option>
+                        <option value="airtel">Airtel</option>
+                        <option value="vi">VI (Vodafone Idea)</option>
+                        <option value="bsnl">BSNL</option>
+                    </select>
+                </div>
+                <button type="submit" class="submit-btn">Reserve My Free Recharge Slot 🚀</button>
+            </form>
+        </div>
+
+        <section class="features">
+            <div class="feature-card">
+                <div class="step-num">01</div>
+                <h3>Check-In & Sync</h3>
+                <p>Register your workspace parameters and securely lock in your connection operator node.</p>
+            </div>
+            <div class="feature-card">
+                <div class="step-num">02</div>
+                <h3>Engage 15 Mins</h3>
+                <p>Complete curated daily evaluation tasks, brand surveys, and verified visual feedback snippets.</p>
+            </div>
+            <div class="feature-card">
+                <div class="step-num">03</div>
+                <h3>Auto-Subsidize</h3>
+                <p>Watch your accumulated network points automatically clear utility bill balances via automated BBPS routing logs.</p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>100% Secure. Encrypted under Indian Digital Personal Data Protection (DPDP) Act Guidelines.</p>
+        <p style="margin-top: 0.5rem; opacity: 0.6;">&copy; 2026 PayFree Technologies. Concept Engineered by Founder & CEO Kadir Sayyed.</p>
+    </footer>
+
+</body>
+</html>
