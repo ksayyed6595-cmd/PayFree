@@ -3,113 +3,276 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PayFree | Your Screen Time. Your Utility Bills. Zeroed.</title>
-    <!-- Tailwind CSS Script CDN (Fixed URL Path) -->
-    <script src="https://tailwindcss.com"></script>
+    <title>PayFree | India's Premium Bill Substitution Platform</title>
     <style>
+        :root {
+            --bg-dark: #0B172C;
+            --bg-card: #13223F;
+            --accent-cyan: #00F2FE;
+            --text-light: #F4F6F9;
+            --text-muted: #8A99AD;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
         body {
-            background-color: #0d1b2a;
-            color: #ffffff;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        header {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--text-light);
+            letter-spacing: 1px;
+        }
+
+        .logo span {
+            color: var(--accent-cyan);
+        }
+
+        .badge-stealth {
+            background: rgba(0, 242, 254, 0.1);
+            border: 1px solid var(--accent-cyan);
+            color: var(--accent-cyan);
+            padding: 0.4rem 1rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        main {
+            max-width: 1200px;
+            margin: 3rem auto;
+            padding: 0 1rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        @media (max-width: 768px) {
+            main {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+                margin: 1rem auto;
+            }
+        }
+
+        .hero-text h1 {
+            font-size: 3rem;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+            font-weight: 800;
+        }
+
+        .hero-text h1 span {
+            color: var(--accent-cyan);
+            display: block;
+        }
+
+        .hero-text p {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+        }
+
+        .card-waitlist {
+            background-color: var(--bg-card);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 2.5rem;
+            border-radius: 16px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        }
+
+        .card-waitlist h2 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+
+        .card-waitlist p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.2rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 0.4rem;
+            font-weight: 600;
+        }
+
+        .form-group input, .form-group select {
+            width: 100%;
+            background-color: var(--bg-dark);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 0.8rem 1rem;
+            border-radius: 8px;
+            color: var(--text-light);
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+
+        .form-group input:focus, .form-group select:focus {
+            outline: none;
+            border-color: var(--accent-cyan);
+            box-shadow: 0 0 10px rgba(0, 242, 254, 0.2);
+        }
+
+        .btn-submit {
+            width: 100%;
+            background: linear-gradient(135deg, #0072FF, var(--accent-cyan));
+            color: #000;
+            border: none;
+            padding: 1rem;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: transform 0.2s, opacity 0.2s;
+            margin-top: 0.5rem;
+        }
+
+        .btn-submit:hover {
+            transform: translateY(-2px);
+            opacity: 0.95;
+        }
+
+        .features-section {
+            max-width: 1200px;
+            margin: 6rem auto;
+            padding: 0 1rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            padding-top: 4rem;
+        }
+
+        .features-section h3 {
+            text-align: center;
+            font-size: 1.8rem;
+            margin-bottom: 3rem;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-item {
+            background-color: var(--bg-card);
+            padding: 2rem;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.02);
+        }
+
+        .feature-item h4 {
+            font-size: 1.2rem;
+            margin-bottom: 0.8rem;
+            color: var(--accent-cyan);
+        }
+
+        .feature-item p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        footer {
+            text-align: center;
+            padding: 4rem 1rem 2rem 1rem;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            margin-top: 4rem;
         }
     </style>
 </head>
-<body class="min-h-screen bg-[#0d1b2a] text-white flex flex-col justify-between p-6 max-w-md mx-auto antialiased">
+<body>
 
-    <!-- Top Navigation Header -->
-    <header class="flex justify-between items-center py-4 text-sm font-semibold tracking-wide text-gray-400 w-full">
-        <div class="text-white text-lg font-bold flex items-center gap-2">
-            <span class="bg-blue-600 w-3 h-3 rounded-full inline-block"></span> Pay Free
-        </div>
-        <div class="bg-slate-800 px-3 py-1 rounded-full text-xs border border-slate-700">Stealth Phase 2026</div>
+    <header>
+        <div class="logo">Pay<span>Free</span></div>
+        <div class="badge-stealth">Stealth Phase 2026</div>
     </header>
 
-    <!-- Main Hero Text Section -->
-    <main class="text-center my-8 w-full">
-        <h1 class="text-3xl font-extrabold tracking-tight leading-tight mb-4 text-white">
-            Your Screen Time.<br>Your Utility Bills. <span class="text-cyan-400">Zeroed.</span>
-        </h1>
-        <p class="text-gray-400 text-sm leading-relaxed font-light px-2">
-            India's premium micro-task network that converts 15 minutes of your daily digital engagement into automated mobile, DTH, and Wi-Fi recharges. No out-of-pocket expenses. Just pure reward substitution.
-        </p>
-    </main>
+    <main>
+        <div class="hero-text">
+            <h1>Your Screen Time.<br>Your Utility Bills. <span>Zeroed.</span></h1>
+            <p>India's premium micro-task network that converts 15 minutes of your daily digital engagement metrics into automated mobile, DTH, and Wi-Fi utility recharges. No out-of-pocket expenses. Just pure reward substitution framework.</p>
+        </div>
 
-    <!-- Waitlist Registration Form Component (With Formspree URL) -->
-    <section class="bg-slate-900/60 border border-slate-800 rounded-2xl p-6 shadow-xl backdrop-blur-sm mb-8 w-full">
-        <h2 class="text-xl font-bold tracking-tight text-white mb-1 text-left">Join the Exclusive Pre-Launch Waitlist</h2>
-        <p class="text-xs text-gray-400 mb-6 text-left">First 2,500 users unlock Gold Tier benefits (2x faster token multipliers upon launch)</p>
-        
-        <!-- Live Formspree Endpoint -->
-        <form action="https://formspree.io" method="POST" class="space-y-4">
+        <div class="card-waitlist">
+            <h2>Join the Exclusive Pre-Launch Waitlist</h2>
+            <p>First 2,500 users unlock Gold Tier benefits (2x faster token multipliers upon launch)</p>
             
-            <!-- First Field: Full Name -->
-            <div class="flex flex-col gap-1.5 text-left">
-                <label for="full-name" class="text-xs font-bold tracking-wider text-gray-400 uppercase">Full Name</label>
-                <input type="text" id="full-name" name="name" required placeholder="Enter your name" 
-                       class="w-full bg-slate-800/80 border border-slate-700/60 rounded-xl px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-cyan-400 text-sm">
-            </div>
-
-            <!-- Second Field: Mobile Number -->
-            <div class="flex flex-col gap-1.5 text-left">
-                <label for="mobile-number" class="text-xs font-bold tracking-wider text-gray-400 uppercase">Mobile Number</label>
-                <input type="tel" id="mobile-number" name="mobile" required placeholder="Enter 10-digit number" 
-                       class="w-full bg-slate-800/80 border border-slate-700/60 rounded-xl px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-cyan-400 text-sm">
-            </div>
-
-            <!-- Third Field: Network Operator -->
-            <div class="flex flex-col gap-1.5 text-left">
-                <label for="network-operator" class="text-xs font-bold tracking-wider text-gray-400 uppercase">Network Operator</label>
-                <div class="relative w-full">
-                    <select id="network-operator" name="operator" required 
-                            class="w-full bg-slate-800/80 border border-slate-700/60 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-cyan-400 text-sm appearance-none cursor-pointer">
-                        <option value="" disabled selected class="text-gray-500">Select Operator</option>
-                        <option value="Jio">Jio</option>
-                        <option value="Airtel">Airtel</option>
-                        <option value="VI">VI (Vodafone Idea)</option>
+            <form action="https://formspree.io" method="POST">
+                <div class="form-group">
+                    <label for="name">Full Name</label>
+                    <input type="text" id="name" name="name" placeholder="Enter your name" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Mobile Number</label>
+                    <input type="tel" id="phone" name="phone" placeholder="Enter 10-digit number" required>
+                </div>
+                <div class="form-group">
+                    <label for="operator">Network Operator</label>
+                    <select id="operator" name="operator" required>
+                        <option value="" disabled selected>Select Operator</option>
+                        <option value="Jio">Reliance Jio</option>
+                        <option value="Airtel">Bharti Airtel</option>
+                        <option value="VI">Vodafone Idea (VI)</option>
                         <option value="BSNL">BSNL</option>
                     </select>
                 </div>
-            </div>
-
-            <!-- Form Action Trigger Button -->
-            <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3.5 px-4 rounded-xl shadow-lg transform transition-all active:scale-95 text-sm mt-4">
-                Reserve My Free Recharge Slot 🚀
-            </button>
-        </form>
-    </section>
-
-    <!-- App Process Metrics & Workflow Timeline -->
-    <section class="space-y-4 mb-8 text-left w-full">
-        <div class="flex gap-4 p-4 rounded-xl bg-slate-900/40 border border-slate-800/60">
-            <div class="text-cyan-400 font-black text-xl tracking-tight">01</div>
-            <div>
-                <h3 class="text-sm font-bold text-white mb-0.5">Check-In & Sync</h3>
-                <p class="text-xs text-gray-400 leading-relaxed">Register your workspace parameters and securely lock in your connection operator node.</p>
-            </div>
+                <button type="submit" class="btn-submit">Reserve My Free Recharge Slot 🚀</button>
+            </form>
         </div>
+    </main>
 
-        <div class="flex gap-4 p-4 rounded-xl bg-slate-900/40 border border-slate-800/60">
-            <div class="text-cyan-400 font-black text-xl tracking-tight">02</div>
-            <div>
-                <h3 class="text-sm font-bold text-white mb-0.5">Engage 15 Mins</h3>
-                <p class="text-xs text-gray-400 leading-relaxed">Complete curated daily evaluation tasks, brand surveys, and verified visual feedback snippets.</p>
+    <section class="features-section">
+        <h3>The PayFree Process Architecture</h3>
+        <div class="features-grid">
+            <div class="feature-item">
+                <h4>01. Check-In & Sync</h4>
+                <p>Register your workspace parameters and securely lock in your connection operator node.</p>
             </div>
-        </div>
-
-        <div class="flex gap-4 p-4 rounded-xl bg-slate-900/40 border border-slate-800/60">
-            <div class="text-cyan-400 font-black text-xl tracking-tight">03</div>
-            <div>
-                <h3 class="text-sm font-bold text-white mb-0.5">Auto-Subsidize</h3>
-                <p class="text-xs text-gray-400 leading-relaxed">Watch your accumulated network points automatically clear utility bill balances via automated BBPS routing logs.</p>
+            <div class="feature-item">
+                <h4>02. Engage 15 Mins</h4>
+                <p>Complete curated daily evaluation tasks, brand surveys, and verified visual feedback snippets.</p>
+            </div>
+            <div class="feature-item">
+                <h4>03. Automated Settlement</h4>
+                <p>Backend routing terminals swap generated attention data matrices directly into mobile plan top-ups.</p>
             </div>
         </div>
     </section>
 
-    <!-- Footer Area (Anonymized) -->
-    <footer class="text-center text-xs text-gray-500 border-t border-slate-800 pt-6 pb-4 space-y-2 w-full">
-        <p class="px-4 leading-relaxed text-gray-400">100% Secure. Encrypted under Indian Digital Personal Data Protection (DPDP) Act Guidelines.</p>
-        <p>&copy; 2026 PayFree Technologies. All Rights Reserved.</p>
+    <footer>
+        <p>100% Encrypted Data Pipeline. Strictly compliant under the Indian Digital Personal Data Protection (DPDP) Act Regulations.</p>
+        <p style="margin-top: 0.5rem; font-weight: 500; color: var(--text-muted);">© 2026 PayFree Technologies. All Rights Reserved.</p>
     </footer>
 
 </body>
-</html>
+                        </html>
+                        
