@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PayFree | Your Screen Time. Your Utility Bills. Zeroed.</title>
-    <!-- Tailwind CSS for Dark Theme -->
+    <!-- Tailwind CSS Script CDN (Fixed URL Path) -->
     <script src="https://tailwindcss.com"></script>
     <style>
         body {
@@ -14,66 +14,73 @@
         }
     </style>
 </head>
-<body class="min-h-screen flex flex-col justify-between p-6 max-w-md mx-auto">
+<body class="min-h-screen bg-[#0d1b2a] text-white flex flex-col justify-between p-6 max-w-md mx-auto antialiased">
 
-    <!-- Header -->
-    <header class="flex justify-between items-center py-4 text-sm font-semibold tracking-wide text-gray-400">
-        <div class="text-white text-lg font-bold flex items-center gap-1">
+    <!-- Top Navigation Header -->
+    <header class="flex justify-between items-center py-4 text-sm font-semibold tracking-wide text-gray-400 w-full">
+        <div class="text-white text-lg font-bold flex items-center gap-2">
             <span class="bg-blue-600 w-3 h-3 rounded-full inline-block"></span> Pay Free
         </div>
         <div class="bg-slate-800 px-3 py-1 rounded-full text-xs border border-slate-700">Stealth Phase 2026</div>
     </header>
 
-    <!-- Hero Section -->
-    <main class="text-center my-8">
-        <h1 class="text-3xl font-extrabold tracking-tight leading-tight mb-4">
+    <!-- Main Hero Text Section -->
+    <main class="text-center my-8 w-full">
+        <h1 class="text-3xl font-extrabold tracking-tight leading-tight mb-4 text-white">
             Your Screen Time.<br>Your Utility Bills. <span class="text-cyan-400">Zeroed.</span>
         </h1>
-        <p class="text-gray-400 text-base leading-relaxed font-light px-2">
+        <p class="text-gray-400 text-sm leading-relaxed font-light px-2">
             India's premium micro-task network that converts 15 minutes of your daily digital engagement into automated mobile, DTH, and Wi-Fi recharges. No out-of-pocket expenses. Just pure reward substitution.
         </p>
     </main>
 
-    <!-- Waitlist Form Section with your active Formspree Link -->
-    <section class="bg-slate-900/60 border border-slate-800 rounded-2xl p-6 shadow-xl backdrop-blur-sm mb-8">
-        <h2 class="text-xl font-bold tracking-tight text-white mb-2 text-left">Join the Exclusive Pre-Launch Waitlist</h2>
+    <!-- Waitlist Registration Form Component (With Formspree URL) -->
+    <section class="bg-slate-900/60 border border-slate-800 rounded-2xl p-6 shadow-xl backdrop-blur-sm mb-8 w-full">
+        <h2 class="text-xl font-bold tracking-tight text-white mb-1 text-left">Join the Exclusive Pre-Launch Waitlist</h2>
         <p class="text-xs text-gray-400 mb-6 text-left">First 2,500 users unlock Gold Tier benefits (2x faster token multipliers upon launch)</p>
         
+        <!-- Live Formspree Endpoint -->
         <form action="https://formspree.io" method="POST" class="space-y-4">
             
-            <div class="flex flex-col gap-1.5">
+            <!-- First Field: Full Name -->
+            <div class="flex flex-col gap-1.5 text-left">
                 <label for="full-name" class="text-xs font-bold tracking-wider text-gray-400 uppercase">Full Name</label>
                 <input type="text" id="full-name" name="name" required placeholder="Enter your name" 
                        class="w-full bg-slate-800/80 border border-slate-700/60 rounded-xl px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-cyan-400 text-sm">
             </div>
 
-            <div class="flex flex-col gap-1.5">
+            <!-- Second Field: Mobile Number -->
+            <div class="flex flex-col gap-1.5 text-left">
                 <label for="mobile-number" class="text-xs font-bold tracking-wider text-gray-400 uppercase">Mobile Number</label>
                 <input type="tel" id="mobile-number" name="mobile" required placeholder="Enter 10-digit number" 
                        class="w-full bg-slate-800/80 border border-slate-700/60 rounded-xl px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-cyan-400 text-sm">
             </div>
 
-            <div class="flex flex-col gap-1.5">
+            <!-- Third Field: Network Operator -->
+            <div class="flex flex-col gap-1.5 text-left">
                 <label for="network-operator" class="text-xs font-bold tracking-wider text-gray-400 uppercase">Network Operator</label>
-                <select id="network-operator" name="operator" required 
-                        class="w-full bg-slate-800/80 border border-slate-700/60 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-cyan-400 text-sm appearance-none cursor-pointer">
-                    <option value="" disabled selected class="text-gray-500">Select Operator</option>
-                    <option value="Jio">Jio</option>
-                    <option value="Airtel">Airtel</option>
-                    <option value="VI">VI (Vodafone Idea)</option>
-                    <option value="BSNL">BSNL</option>
-                </select>
+                <div class="relative w-full">
+                    <select id="network-operator" name="operator" required 
+                            class="w-full bg-slate-800/80 border border-slate-700/60 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-cyan-400 text-sm appearance-none cursor-pointer">
+                        <option value="" disabled selected class="text-gray-500">Select Operator</option>
+                        <option value="Jio">Jio</option>
+                        <option value="Airtel">Airtel</option>
+                        <option value="VI">VI (Vodafone Idea)</option>
+                        <option value="BSNL">BSNL</option>
+                    </select>
+                </div>
             </div>
 
+            <!-- Form Action Trigger Button -->
             <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3.5 px-4 rounded-xl shadow-lg transform transition-all active:scale-95 text-sm mt-4">
                 Reserve My Free Recharge Slot 🚀
             </button>
         </form>
     </section>
 
-    <!-- Workflow Timeline -->
-    <section class="space-y-4 mb-8 text-left">
-        <div class="flex gap-4 p-4 rounded-xl bg-slate-900/30 border border-slate-800/50">
+    <!-- App Process Metrics & Workflow Timeline -->
+    <section class="space-y-4 mb-8 text-left w-full">
+        <div class="flex gap-4 p-4 rounded-xl bg-slate-900/40 border border-slate-800/60">
             <div class="text-cyan-400 font-black text-xl tracking-tight">01</div>
             <div>
                 <h3 class="text-sm font-bold text-white mb-0.5">Check-In & Sync</h3>
@@ -81,7 +88,7 @@
             </div>
         </div>
 
-        <div class="flex gap-4 p-4 rounded-xl bg-slate-900/30 border border-slate-800/50">
+        <div class="flex gap-4 p-4 rounded-xl bg-slate-900/40 border border-slate-800/60">
             <div class="text-cyan-400 font-black text-xl tracking-tight">02</div>
             <div>
                 <h3 class="text-sm font-bold text-white mb-0.5">Engage 15 Mins</h3>
@@ -89,7 +96,7 @@
             </div>
         </div>
 
-        <div class="flex gap-4 p-4 rounded-xl bg-slate-900/30 border border-slate-800/50">
+        <div class="flex gap-4 p-4 rounded-xl bg-slate-900/40 border border-slate-800/60">
             <div class="text-cyan-400 font-black text-xl tracking-tight">03</div>
             <div>
                 <h3 class="text-sm font-bold text-white mb-0.5">Auto-Subsidize</h3>
@@ -98,8 +105,8 @@
         </div>
     </section>
 
-    <!-- Anonymized Footer -->
-    <footer class="text-center text-xs text-gray-500 border-t border-slate-800 pt-6 pb-4 space-y-2">
+    <!-- Footer Area (Anonymized) -->
+    <footer class="text-center text-xs text-gray-500 border-t border-slate-800 pt-6 pb-4 space-y-2 w-full">
         <p class="px-4 leading-relaxed text-gray-400">100% Secure. Encrypted under Indian Digital Personal Data Protection (DPDP) Act Guidelines.</p>
         <p>&copy; 2026 PayFree Technologies. All Rights Reserved.</p>
     </footer>
