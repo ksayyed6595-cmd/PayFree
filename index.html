@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -125,7 +126,8 @@
             font-weight: 600;
         }
 
-        .form-group input, .form-group select {
+        .form-group input,
+        .form-group select {
             width: 100%;
             background-color: var(--bg-dark);
             border: 1px solid rgba(255, 255, 255, 0.1);
@@ -136,7 +138,8 @@
             transition: all 0.3s;
         }
 
-        .form-group input:focus, .form-group select:focus {
+        .form-group input:focus,
+        .form-group select:focus {
             outline: none;
             border-color: var(--accent-cyan);
             box-shadow: 0 0 10px rgba(0, 242, 254, 0.2);
@@ -159,6 +162,18 @@
         .btn-submit:hover {
             transform: translateY(-2px);
             opacity: 0.95;
+        }
+
+        .btn-submit:disabled {
+            cursor: wait;
+            opacity: 0.6;
+            transform: none;
+        }
+
+        #submissionStatus {
+            margin-top: 1rem;
+            font-size: 0.9rem;
+            overflow-wrap: anywhere;
         }
 
         .features-section {
@@ -226,19 +241,39 @@
         <div class="card-waitlist">
             <h2>Join the Exclusive Pre-Launch Waitlist</h2>
             <p>The first 2,500 validated signups unlock permanent 2x optimization capabilities on launch.</p>
-            
+
             <form id="payfreeWaitlistForm">
                 <div class="form-group">
                     <label for="name">Full Name</label>
-                    <input type="text" id="name" placeholder="Enter your name" required>
+                    <input
+                        type="text"
+                        id="name"
+                        name="name"
+                        placeholder="Enter your name"
+                        autocomplete="name"
+                        required
+                        maxlength="100"
+                    >
                 </div>
+
                 <div class="form-group">
                     <label for="phone">Mobile Number</label>
-                    <input type="tel" id="phone" placeholder="Enter mobile number" required>
+                    <input
+                        type="tel"
+                        id="phone"
+                        name="phone"
+                        placeholder="Enter 10-digit mobile number"
+                        autocomplete="tel-national"
+                        inputmode="numeric"
+                        pattern="[6-9][0-9]{9}"
+                        maxlength="10"
+                        required
+                    >
                 </div>
+
                 <div class="form-group">
                     <label for="operator">Network Provider</label>
-                    <select id="operator" required>
+                    <select id="operator" name="operator" required>
                         <option value="" disabled selected>Select operator circle</option>
                         <option value="Jio">Reliance Jio</option>
                         <option value="Airtel">Bharti Airtel</option>
@@ -246,7 +281,12 @@
                         <option value="BSNL">BSNL</option>
                     </select>
                 </div>
-                <button type="submit" class="btn-submit">RESERVE MY RECHARGE SLOT 🚀</button>
+
+                <button type="submit" class="btn-submit">
+                    RESERVE MY RECHARGE SLOT 🚀
+                </button>
+
+                <p id="submissionStatus" role="status" aria-live="polite"></p>
             </form>
         </div>
     </main>
@@ -255,13 +295,15 @@
         <h3>The PayFree Process Architecture</h3>
         <div class="features-grid">
             <div class="feature-item">
-                <h4>01. Check-In & Sync</h4>
+                <h4>01. Check-In &amp; Sync</h4>
                 <p>Register your workspace parameters and securely lock in your connection operator node.</p>
             </div>
+
             <div class="feature-item">
                 <h4>02. Engage 15 Mins</h4>
                 <p>Complete curated daily evaluation tasks, brand surveys, and verified visual feedback snippets.</p>
             </div>
+
             <div class="feature-item">
                 <h4>03. Automated Settlement</h4>
                 <p>Backend routing terminals swap generated attention data matrices directly into mobile plan top-ups.</p>
@@ -271,20 +313,109 @@
 
     <footer>
         <p>100% Encrypted Data Pipeline. Strictly compliant under the Indian Digital Personal Data Protection (DPDP) Act Regulations.</p>
-        <p style="margin-top: 0.5rem; font-weight: 500; color: var(--text-muted);">© 2026 PayFree Technologies. All Rights Reserved.</p>
+        <p style="margin-top: 0.5rem; font-weight: 500; color: var(--text-muted);">
+            © 2026 PayFree Technologies. All Rights Reserved.
+        </p>
     </footer>
 
-    <!-- BYPASSING FIREBASE WITH YOUR GENUINE LONG GOOGLE FORMS LINK -->
     <script>
-        document.getElementById('payfreeWaitlistForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Your exact, authenticated long desktop form URL endpoint
-            var coreGoogleFormsLongURL = "https://google.com";
-            
-            // Absolute direct viewport replacement layer
-            window.location.replace(coreGoogleFormsLongURL);
+    (function () {
+        'use strict';
+
+        const waitlistForm = document.getElementById('payfreeWaitlistForm');
+        const submitButton = waitlistForm.querySelector('button[type="submit"]');
+        const status = document.getElementById('submissionStatus');
+
+        // Google Form response endpoint.
+        const GOOGLE_FORM_ACTION =
+            'https://docs.google.com/forms/d/e/' +
+            '1FAIpQLSenEBIRmUuFzowLMHAZEFnqErcYQrUbQkMcd5qiPsO60ifCyw/' +
+            'formResponse';
+
+        // Entry IDs taken from your pre-filled Google Form URL.
+        const ENTRY_IDS = {
+            name: 'entry.1209669372',
+            phone: 'entry.449938509',
+            operator: 'entry.118947300'
+        };
+
+        // Hidden iframe keeps the PayFree page open after submission.
+        const responseFrame = document.createElement('iframe');
+        responseFrame.name = 'payfreeGoogleFormResponse';
+        responseFrame.title = 'Google Form response';
+        responseFrame.style.display = 'none';
+        document.body.appendChild(responseFrame);
+
+        let submissionStarted = false;
+
+        waitlistForm.addEventListener('submit', function (event) {
+            event.preventDefault();
+
+            if (submissionStarted) {
+                return;
+            }
+
+            const name = document.getElementById('name').value.trim();
+            const phone = document.getElementById('phone').value.trim();
+            const operator = document.getElementById('operator').value;
+
+            if (!name || !phone || !operator) {
+                status.textContent = 'Please complete all fields.';
+                return;
+            }
+
+            if (!/^[6-9]\d{9}$/.test(phone)) {
+                status.textContent =
+                    'Please enter a valid 10-digit Indian mobile number.';
+                document.getElementById('phone').focus();
+                return;
+            }
+
+            submissionStarted = true;
+            submitButton.disabled = true;
+            status.textContent = 'Sending your details...';
+
+            const googleFormSubmission = document.createElement('form');
+            googleFormSubmission.method = 'POST';
+            googleFormSubmission.action = GOOGLE_FORM_ACTION;
+            googleFormSubmission.target = responseFrame.name;
+            googleFormSubmission.acceptCharset = 'UTF-8';
+            googleFormSubmission.style.display = 'none';
+
+            const fields = [
+                [ENTRY_IDS.name, name],
+                [ENTRY_IDS.phone, phone],
+                [ENTRY_IDS.operator, operator]
+            ];
+
+            fields.forEach(function (field) {
+                const input = document.createElement('input');
+                input.type = 'hidden';
+                input.name = field[0];
+                input.value = field[1];
+                googleFormSubmission.appendChild(input);
+            });
+
+            document.body.appendChild(googleFormSubmission);
+
+            try {
+                googleFormSubmission.submit();
+
+                // The browser cannot verify Google's cross-origin response.
+                // Do not display a false "saved successfully" confirmation.
+                status.textContent =
+                    'Your submission request was sent. Please check the ' +
+                    'Google Form Responses section to confirm it was saved.';
+
+            } catch (error) {
+                submissionStarted = false;
+                submitButton.disabled = false;
+                status.textContent =
+                    'We could not send your details. Please try again.';
+                googleFormSubmission.remove();
+            }
         });
+    })();
     </script>
 
 </body>
