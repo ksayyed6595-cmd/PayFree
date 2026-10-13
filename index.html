@@ -4,7 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#0B172C">
     <title>PayFree | India's Premium Bill Substitution Platform</title>
+
     <style>
         :root {
             --bg-dark: #0B172C;
@@ -35,6 +37,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            gap: 1rem;
         }
 
         .logo {
@@ -69,10 +72,27 @@
         }
 
         @media (max-width: 768px) {
+            header {
+                padding: 1.25rem 1rem;
+            }
+
+            .badge-stealth {
+                font-size: 0.7rem;
+                padding: 0.35rem 0.65rem;
+            }
+
             main {
                 grid-template-columns: 1fr;
                 gap: 2rem;
                 margin: 1rem auto;
+            }
+
+            .hero-text h1 {
+                font-size: 2.4rem;
+            }
+
+            .card-waitlist {
+                padding: 1.5rem;
             }
         }
 
@@ -165,8 +185,8 @@
         }
 
         .btn-submit:disabled {
-            cursor: wait;
             opacity: 0.6;
+            cursor: wait;
             transform: none;
         }
 
@@ -179,9 +199,8 @@
         .features-section {
             max-width: 1200px;
             margin: 6rem auto;
-            padding: 0 1rem;
+            padding: 4rem 1rem 0;
             border-top: 1px solid rgba(255, 255, 255, 0.05);
-            padding-top: 4rem;
         }
 
         .features-section h3 {
@@ -217,14 +236,76 @@
 
         footer {
             text-align: center;
-            padding: 4rem 1rem 2rem 1rem;
+            padding: 4rem 1rem 2rem;
             color: var(--text-muted);
             font-size: 0.85rem;
             border-top: 1px solid rgba(255, 255, 255, 0.05);
             margin-top: 4rem;
         }
+
+        /* Thank-you screen */
+        .thank-you-card {
+            grid-column: 1 / -1;
+            max-width: 680px;
+            width: 100%;
+            margin: 1rem auto;
+            padding: 3rem 2rem;
+            text-align: center;
+            background: var(--bg-card);
+            border: 1px solid rgba(0, 242, 254, 0.25);
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        }
+
+        .thank-you-icon {
+            width: 76px;
+            height: 76px;
+            margin: 0 auto 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(0, 242, 254, 0.1);
+            border: 1px solid rgba(0, 242, 254, 0.3);
+            border-radius: 50%;
+            font-size: 2.5rem;
+        }
+
+        .thank-you-card h1 {
+            color: var(--accent-cyan);
+            font-size: 2rem;
+            line-height: 1.25;
+            margin-bottom: 1rem;
+        }
+
+        .thank-you-card p {
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+        }
+
+        .thank-you-card .welcome-highlight {
+            color: var(--text-light);
+            font-size: 1.05rem;
+        }
+
+        .thank-you-card .thank-you-tagline {
+            color: var(--accent-cyan);
+            font-weight: 700;
+            font-size: 1.05rem;
+            margin-top: 1.5rem;
+        }
+
+        @media (max-width: 480px) {
+            .thank-you-card {
+                padding: 2rem 1.25rem;
+            }
+
+            .thank-you-card h1 {
+                font-size: 1.7rem;
+            }
+        }
     </style>
 </head>
+
 <body>
 
     <header>
@@ -232,7 +313,7 @@
         <div class="badge-stealth">Stealth Phase 2026</div>
     </header>
 
-    <main>
+    <main id="mainContent">
         <div class="hero-text">
             <h1>Your Screen Time.<br>Your Utility Bills. <span>Zeroed.</span></h1>
             <p>India's premium micro-task network that converts 15 minutes of your daily digital engagement metrics into automated mobile, DTH, and Wi-Fi utility recharges. No out-of-pocket expenses. Just pure reward substitution framework.</p>
@@ -248,11 +329,10 @@
                     <input
                         type="text"
                         id="name"
-                        name="name"
                         placeholder="Enter your name"
                         autocomplete="name"
-                        required
                         maxlength="100"
+                        required
                     >
                 </div>
 
@@ -261,7 +341,6 @@
                     <input
                         type="tel"
                         id="phone"
-                        name="phone"
                         placeholder="Enter 10-digit mobile number"
                         autocomplete="tel-national"
                         inputmode="numeric"
@@ -273,7 +352,7 @@
 
                 <div class="form-group">
                     <label for="operator">Network Provider</label>
-                    <select id="operator" name="operator" required>
+                    <select id="operator" required>
                         <option value="" disabled selected>Select operator circle</option>
                         <option value="Jio">Reliance Jio</option>
                         <option value="Airtel">Bharti Airtel</option>
@@ -291,8 +370,9 @@
         </div>
     </main>
 
-    <section class="features-section">
+    <section class="features-section" id="featuresSection">
         <h3>The PayFree Process Architecture</h3>
+
         <div class="features-grid">
             <div class="feature-item">
                 <h4>01. Check-In &amp; Sync</h4>
@@ -325,24 +405,23 @@
         const waitlistForm = document.getElementById('payfreeWaitlistForm');
         const submitButton = waitlistForm.querySelector('button[type="submit"]');
         const status = document.getElementById('submissionStatus');
+        const mainContent = document.getElementById('mainContent');
+        const featuresSection = document.getElementById('featuresSection');
 
-        // Google Form response endpoint.
         const GOOGLE_FORM_ACTION =
             'https://docs.google.com/forms/d/e/' +
             '1FAIpQLSenEBIRmUuFzowLMHAZEFnqErcYQrUbQkMcd5qiPsO60ifCyw/' +
             'formResponse';
 
-        // Entry IDs taken from your pre-filled Google Form URL.
         const ENTRY_IDS = {
             name: 'entry.1209669372',
             phone: 'entry.449938509',
             operator: 'entry.118947300'
         };
 
-        // Hidden iframe keeps the PayFree page open after submission.
         const responseFrame = document.createElement('iframe');
         responseFrame.name = 'payfreeGoogleFormResponse';
-        responseFrame.title = 'Google Form response';
+        responseFrame.title = 'Form submission response';
         responseFrame.style.display = 'none';
         document.body.appendChild(responseFrame);
 
@@ -373,7 +452,7 @@
 
             submissionStarted = true;
             submitButton.disabled = true;
-            status.textContent = 'Sending your details...';
+            status.textContent = 'Submitting your details...';
 
             const googleFormSubmission = document.createElement('form');
             googleFormSubmission.method = 'POST';
@@ -401,17 +480,49 @@
             try {
                 googleFormSubmission.submit();
 
-                // The browser cannot verify Google's cross-origin response.
-                // Do not display a false "saved successfully" confirmation.
-                status.textContent =
-                    'Your submission request was sent. Please check the ' +
-                    'Google Form Responses section to confirm it was saved.';
+                /*
+                 * Google Forms does not expose a reliable, readable
+                 * cross-origin success response to this page.
+                 *
+                 * This welcome screen appears after the submission
+                 * request is sent, not after a verified save response.
+                 * Check the Google Forms Responses tab during testing.
+                 */
+                mainContent.innerHTML = `
+                    <div class="thank-you-card">
+                        <div class="thank-you-icon" aria-hidden="true">
+                            🎉
+                        </div>
+
+                        <h1>Welcome to the PayFree Family!</h1>
+
+                        <p class="welcome-highlight">
+                            Thank you for joining our exclusive pre-launch
+                            community.
+                        </p>
+
+                        <p>
+                            You're on the list! Stay connected for exciting
+                            PayFree updates as we prepare for launch.
+                        </p>
+
+                        <p class="thank-you-tagline">
+                            Your journey to rewards starts here. 🚀
+                        </p>
+                    </div>
+                `;
+
+                featuresSection.style.display = 'none';
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+
+                googleFormSubmission.remove();
 
             } catch (error) {
                 submissionStarted = false;
                 submitButton.disabled = false;
                 status.textContent =
                     'We could not send your details. Please try again.';
+
                 googleFormSubmission.remove();
             }
         });
@@ -419,4 +530,4 @@
     </script>
 
 </body>
-</html>
+    </html>
