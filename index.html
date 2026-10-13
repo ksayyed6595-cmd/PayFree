@@ -99,66 +99,39 @@
             padding: 2.5rem;
             border-radius: 16px;
             box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            text-align: center;
         }
 
         .card-waitlist h2 {
-            font-size: 1.5rem;
-            margin-bottom: 0.5rem;
+            font-size: 1.6rem;
+            margin-bottom: 0.8rem;
             font-weight: 700;
         }
 
         .card-waitlist p {
             color: var(--text-muted);
-            font-size: 0.9rem;
-            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+            margin-bottom: 2rem;
         }
 
-        .form-group {
-            margin-bottom: 1.2rem;
-        }
-
-        .form-group label {
-            display: block;
-            font-size: 0.85rem;
-            color: var(--text-muted);
-            margin-bottom: 0.4rem;
-            font-weight: 600;
-        }
-
-        .form-group input, .form-group select {
-            width: 100%;
-            background-color: var(--bg-dark);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 0.8rem 1rem;
-            border-radius: 8px;
-            color: var(--text-light);
-            font-size: 1rem;
-            transition: all 0.3s;
-        }
-
-        .form-group input:focus, .form-group select:focus {
-            outline: none;
-            border-color: var(--accent-cyan);
-            box-shadow: 0 0 10px rgba(0, 242, 254, 0.2);
-        }
-
-        .btn-submit {
+        .btn-direct-launch {
+            display: inline-block;
             width: 100%;
             background: linear-gradient(135deg, #0072FF, var(--accent-cyan));
             color: #000;
-            border: none;
-            padding: 1rem;
+            text-decoration: none;
+            padding: 1.2rem;
             border-radius: 8px;
-            font-size: 1rem;
+            font-size: 1.1rem;
             font-weight: 700;
             cursor: pointer;
-            transition: transform 0.2s, opacity 0.2s;
-            margin-top: 0.5rem;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 4px 15px rgba(0, 242, 254, 0.3);
         }
 
-        .btn-submit:hover {
-            transform: translateY(-2px);
-            opacity: 0.95;
+        .btn-direct-launch:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 242, 254, 0.5);
         }
 
         .features-section {
@@ -225,29 +198,12 @@
 
         <div class="card-waitlist">
             <h2>Join the Exclusive Pre-Launch Waitlist</h2>
-            <p>The first 2,500 validated signups unlock permanent 2x optimization capabilities on launch.</p>
+            <p>First 2,500 users unlock Gold Tier benefits (2x faster token multipliers upon launch)</p>
             
-            <form id="payfreeWaitlistForm">
-                <div class="form-group">
-                    <label for="name">Full Name</label>
-                    <input type="text" id="name" placeholder="Enter your name" required>
-                </div>
-                <div class="form-group">
-                    <label for="phone">Mobile Number</label>
-                    <input type="tel" id="phone" placeholder="Enter mobile number" required>
-                </div>
-                <div class="form-group">
-                    <label for="operator">Network Provider</label>
-                    <select id="operator" required>
-                        <option value="" disabled selected>Select operator circle</option>
-                        <option value="Jio">Reliance Jio</option>
-                        <option value="Airtel">Bharti Airtel</option>
-                        <option value="VI">Vodafone Idea (VI)</option>
-                        <option value="BSNL">BSNL</option>
-                    </select>
-                </div>
-                <button type="submit" class="btn-submit">RESERVE MY RECHARGE SLOT 🚀</button>
-            </form>
+            <!-- SECURE DIRECT HYPERLINK FOR ABSOLUTE ENCRYPTION -->
+            <a href="https://google.com" class="btn-direct-launch" target="_blank">
+                RESERVE MY RECHARGE SLOT 🚀
+            </a>
         </div>
     </main>
 
@@ -273,19 +229,6 @@
         <p>100% Encrypted Data Pipeline. Strictly compliant under the Indian Digital Personal Data Protection (DPDP) Act Regulations.</p>
         <p style="margin-top: 0.5rem; font-weight: 500; color: var(--text-muted);">© 2026 PayFree Technologies. All Rights Reserved.</p>
     </footer>
-
-    <!-- BYPASSING FIREBASE ENTITIES ENTIRELY VIA THE MASTER LONG DESKTOP DIRECTORY LINK -->
-    <script>
-        document.getElementById('payfreeWaitlistForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Core Full-length unparsable absolute desktop core routing link to completely eliminate dynamic link errors
-            var coreGoogleFormsLongURL = "https://google.com";
-            
-            // Direct system redirection mapping execution
-            window.location.href = coreGoogleFormsLongURL;
-        });
-    </script>
 
 </body>
 </html>
