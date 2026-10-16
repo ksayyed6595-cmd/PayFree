@@ -89,7 +89,7 @@
             }
 
             .hero-text h1 {
-                font-size: 1.5rem; /* Compact size for mobile */
+                font-size: 1.5rem;
             }
 
             .card-waitlist {
@@ -97,9 +97,8 @@
             }
         }
 
-        /* Updated Hero Text Styling with Reduced Font Size */
         .hero-text h1 {
-            font-size: 2rem; /* Reduced font size for sleek desktop look */
+            font-size: 2rem;
             line-height: 1.35;
             margin-bottom: 1.2rem;
             font-weight: 700;
@@ -266,7 +265,27 @@
             margin-top: 4rem;
         }
 
-        /* Thank-you screen */
+        footer a {
+            color: var(--accent-cyan);
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        .footer-privacy {
+            max-width: 680px;
+            margin: 0 auto 1.2rem auto;
+            font-size: 0.8rem;
+            color: #8A99AD;
+            line-height: 1.4;
+            background: rgba(255, 255, 255, 0.02);
+            padding: 0.8rem 1rem;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
         .thank-you-card {
             grid-column: 1 / -1;
             max-width: 680px;
@@ -337,7 +356,6 @@
     </header>
 
     <main id="mainContent">
-        <!-- UPDATED HERO SECTION -->
         <div class="hero-text">
             <h1>Mobile Aur Utility Expenses Par pao Control —<span>Bina Apni Jeb Se Kharch Kiye!</span></h1>
             
@@ -422,7 +440,13 @@
     </section>
 
     <footer>
-        <p>100% Encrypted Data Pipeline. Strictly compliant under the Indian Digital Personal Data Protection (DPDP) Act Regulations.</p>
+        <div class="footer-privacy">
+            🔒 <strong>Privacy Declaration:</strong> Hum aapka naam aur mobile number kisi bhi 3rd party ko sale nahi karte. Aapka data 100% secure hai aur sirf PayFree pre-launch updates ke liye use kiya jayega.
+        </div>
+        <p>100% Encrypted Data Pipeline. Strictly compliant under Indian DPDP Act &amp; IT Rules Regulations.</p>
+        <p style="margin-top: 0.4rem; font-weight: 500; color: var(--text-muted);">
+            Contact Us: <a href="mailto:payfreerewardswaitlist@gmail.com">payfreerewardswaitlist@gmail.com</a>
+        </p>
         <p style="margin-top: 0.5rem; font-weight: 500; color: var(--text-muted);">
             © 2026 PayFree Technologies. All Rights Reserved.
         </p>
