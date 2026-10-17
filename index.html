@@ -1366,6 +1366,10 @@
 
         googleForm.submit();
 
+if (typeof gtag === "function") {
+  gtag("event", "waitlist_submit");
+}
+
         window.setTimeout(function () {
           if (googleForm) googleForm.remove();
 
