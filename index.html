@@ -2,27 +2,35 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#0b1220">
-  <meta name="description" content="Join the PayFreeRewards pre-launch waitlist and receive updates as we prepare to launch.">
-  <title>PayFreeRewards | Join the Pre-Launch Waitlist</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>PayFreeRewards | Join the Waitlist</title>
+
+  <meta
+    name="description"
+    content="Join the PayFreeRewards pre-launch waitlist and stay connected for future announcements and launch updates."
+  >
+
+  <meta name="theme-color" content="#0b1424">
 
   <style>
     :root {
-      --bg: #0b1220;
-      --surface: #111c2e;
-      --surface-2: #15243a;
-      --text: #f4f7fb;
-      --muted: #a7b4c7;
-      --line: rgba(255,255,255,.11);
-      --cyan: #54e4e9;
-      --blue: #76a8ff;
-      --green: #76e0b2;
-      --max: 1160px;
+      --bg: #0b1424;
+      --bg-light: #101e32;
+      --card: #122238;
+      --card-light: #192b42;
+      --text: #f4f8ff;
+      --muted: #a8b7cb;
+      --cyan: #55d9e9;
+      --blue: #70a9ff;
+      --border: rgba(133, 211, 231, 0.20);
+      --success: #70e3c0;
     }
 
     * {
       box-sizing: border-box;
+      margin: 0;
+      padding: 0;
     }
 
     html {
@@ -30,93 +38,105 @@
     }
 
     body {
-      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
       background:
-        radial-gradient(ellipse at 12% 0%, rgba(44,103,173,.2), transparent 38rem),
-        radial-gradient(ellipse at 95% 22%, rgba(31,190,195,.10), transparent 30rem),
-        var(--bg);
+        radial-gradient(
+          circle at 85% 10%,
+          rgba(45, 111, 157, 0.17),
+          transparent 34%
+        ),
+        linear-gradient(145deg, #091321, var(--bg) 55%, #0e1c30);
       color: var(--text);
-      font-family: Inter, ui-sans-serif, system-ui, -apple-system,
-        BlinkMacSystemFont, "Segoe UI", sans-serif;
-      line-height: 1.65;
-      overflow-x: hidden;
+      line-height: 1.7;
+      min-height: 100vh;
     }
 
     a {
       color: inherit;
+      text-decoration: none;
     }
 
-    .wrap {
-      width: min(var(--max), calc(100% - 40px));
-      margin-inline: auto;
+    button,
+    input,
+    select {
+      font: inherit;
+    }
+
+    button,
+    a,
+    input,
+    select {
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .container {
+      width: min(1120px, 100% - 40px);
+      margin: 0 auto;
     }
 
     /* HEADER */
 
-    .topbar {
+    header {
+      border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+      background: rgba(8, 18, 32, 0.86);
+    }
+
+    .nav {
+      min-height: 82px;
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 20px;
-      padding: 24px 0;
     }
 
     .brand {
       display: inline-flex;
       align-items: center;
-      gap: 11px;
-      text-decoration: none;
-      font-weight: 850;
-      font-size: 1.35rem;
-      letter-spacing: -.04em;
+      gap: 12px;
+      font-weight: 800;
+      font-size: 22px;
+      letter-spacing: -0.8px;
     }
 
-    .brand-mark {
+    .brand-icon {
       display: grid;
       place-items: center;
-      width: 42px;
-      height: 42px;
-      border-radius: 13px;
-      color: #06131d;
-      font-size: 1.05rem;
-      font-weight: 950;
+      width: 46px;
+      height: 46px;
+      border-radius: 15px;
+      color: #071522;
       background: linear-gradient(135deg, var(--cyan), var(--blue));
-      box-shadow: 0 8px 28px rgba(84,228,233,.18);
+      font-size: 25px;
+      font-weight: 900;
+      flex-shrink: 0;
     }
 
     .brand-name span {
       color: var(--cyan);
     }
 
-    .status-pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 8px 13px;
-      border: 1px solid var(--line);
-      border-radius: 999px;
-      color: #c7d3e5;
-      background: rgba(255,255,255,.035);
-      font-size: .8rem;
-      font-weight: 650;
+    .nav-badge {
+      color: var(--cyan);
+      border: 1px solid var(--border);
+      background: rgba(85, 217, 233, 0.07);
+      padding: 7px 13px;
+      border-radius: 30px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.4px;
     }
 
-    .status-dot {
-      width: 7px;
-      height: 7px;
-      background: var(--green);
-      border-radius: 50%;
-      box-shadow: 0 0 12px rgba(118,224,178,.6);
-    }
-
-    /* HERO SECTION */
+    /* HERO */
 
     .hero {
+      padding: 80px 0 64px;
+    }
+
+    .hero-grid {
       display: grid;
-      grid-template-columns: 1.06fr .94fr;
+      grid-template-columns: 1.15fr 0.85fr;
       align-items: center;
-      gap: clamp(34px, 6vw, 76px);
-      padding: clamp(42px, 7vw, 88px) 0 74px;
+      gap: 52px;
     }
 
     .eyebrow {
@@ -124,651 +144,670 @@
       align-items: center;
       gap: 9px;
       color: var(--cyan);
-      font-size: .78rem;
-      text-transform: uppercase;
-      letter-spacing: .14em;
+      font-size: 12px;
       font-weight: 800;
-      margin-bottom: 20px;
+      letter-spacing: 1.8px;
+      text-transform: uppercase;
+      margin-bottom: 23px;
     }
 
     .eyebrow::before {
       content: "";
-      width: 24px;
-      height: 1px;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
       background: var(--cyan);
+      box-shadow: 0 0 14px rgba(85, 217, 233, 0.6);
     }
 
     h1 {
-      font-size: clamp(2.55rem, 5.2vw, 4.65rem);
-      line-height: 1.05;
-      letter-spacing: -.065em;
-      margin: 0 0 23px;
-      max-width: 720px;
+      font-size: clamp(39px, 5.4vw, 65px);
+      line-height: 1.12;
+      letter-spacing: -2.3px;
+      margin-bottom: 24px;
+      max-width: 680px;
     }
 
-    h1 .highlight {
-      color: var(--cyan);
+    .gradient-text {
+      background: linear-gradient(100deg, var(--cyan), var(--blue));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
     }
 
-    .hero-copy {
-      color: #c1ccdb;
-      font-size: clamp(1rem, 1.5vw, 1.15rem);
-      max-width: 610px;
-      margin: 0 0 27px;
+    .hero-description {
+      color: var(--muted);
+      font-size: 18px;
+      line-height: 1.9;
+      max-width: 590px;
+      margin-bottom: 28px;
     }
 
-    .hero-points {
+    .hero-actions {
       display: flex;
-      flex-wrap: wrap;
-      gap: 10px 18px;
-      color: #d9e3f0;
-      font-size: .88rem;
-      margin: 0 0 30px;
-    }
-
-    .hero-points span {
-      display: inline-flex;
       align-items: center;
-      gap: 8px;
+      flex-wrap: wrap;
+      gap: 14px;
     }
 
-    .check {
-      color: var(--green);
-      font-weight: 900;
-    }
-
-    .primary-link {
+    .button {
+      min-height: 52px;
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 10px;
-      min-height: 52px;
-      padding: 0 22px;
-      background: linear-gradient(110deg, var(--cyan), #a2f1ed);
-      color: #06131d;
-      border-radius: 12px;
-      text-decoration: none;
-      font-weight: 850;
-      box-shadow: 0 12px 28px rgba(84,228,233,.15);
-      transition: transform .2s, box-shadow .2s;
+      gap: 9px;
+      padding: 13px 23px;
+      border: 1px solid transparent;
+      border-radius: 13px;
+      font-weight: 800;
+      cursor: pointer;
+      transition:
+        transform 0.2s ease,
+        opacity 0.2s ease,
+        background 0.2s ease;
     }
 
-    .primary-link:hover {
+    .button:hover {
       transform: translateY(-2px);
-      box-shadow: 0 16px 34px rgba(84,228,233,.23);
     }
 
-    .microcopy {
-      color: var(--muted);
-      font-size: .78rem;
-      margin: 12px 0 0;
+    .button-primary {
+      color: #071522;
+      background: linear-gradient(110deg, var(--cyan), #8ce8ef);
+      box-shadow: 0 10px 28px rgba(51, 192, 215, 0.15);
     }
 
-    /* HERO VISUAL */
+    .button-secondary {
+      color: var(--text);
+      background: rgba(255, 255, 255, 0.035);
+      border-color: var(--border);
+    }
 
-    .visual {
+    .hero-note {
+      margin-top: 20px;
+      color: #8194ad;
+      font-size: 13px;
+    }
+
+    /* HERO PREVIEW CARD */
+
+    .preview-card {
       position: relative;
-      min-height: 440px;
-      border: 1px solid var(--line);
-      border-radius: 30px;
-      padding: 25px;
-      background: linear-gradient(
-        145deg,
-        rgba(25,43,68,.92),
-        rgba(14,25,42,.9)
-      );
-      box-shadow: 0 35px 90px rgba(0,0,0,.24);
+      padding: 30px;
+      border: 1px solid var(--border);
+      border-radius: 27px;
+      background:
+        linear-gradient(
+          145deg,
+          rgba(26, 49, 73, 0.96),
+          rgba(13, 28, 46, 0.97)
+        );
+      box-shadow: 0 25px 75px rgba(0, 0, 0, 0.2);
       overflow: hidden;
     }
 
-    .visual::before,
-    .visual::after {
+    .preview-card::before {
       content: "";
       position: absolute;
+      width: 200px;
+      height: 200px;
+      top: -100px;
+      right: -70px;
       border-radius: 50%;
-      filter: blur(1px);
-      pointer-events: none;
+      background: rgba(85, 217, 233, 0.09);
+      filter: blur(10px);
     }
 
-    .visual::before {
-      width: 260px;
-      height: 260px;
-      right: -85px;
-      top: -80px;
-      background: rgba(84,228,233,.12);
-    }
-
-    .visual::after {
-      width: 220px;
-      height: 220px;
-      left: -90px;
-      bottom: -90px;
-      background: rgba(118,168,255,.12);
-    }
-
-    .visual-top {
+    .preview-top {
       position: relative;
-      z-index: 1;
       display: flex;
+      justify-content: space-between;
       align-items: center;
-      justify-content: space-between;
       gap: 12px;
+      margin-bottom: 28px;
     }
 
-    .visual-label {
-      font-size: .78rem;
-      color: #b6c5d8;
-      letter-spacing: .08em;
-      text-transform: uppercase;
-      font-weight: 750;
+    .preview-label {
+      color: var(--muted);
+      font-size: 13px;
     }
 
-    .mini-badge {
-      border: 1px solid rgba(118,224,178,.25);
-      background: rgba(118,224,178,.08);
-      color: #9deac7;
-      border-radius: 999px;
+    .status-pill {
+      color: var(--success);
+      border: 1px solid rgba(112, 227, 192, 0.22);
+      background: rgba(112, 227, 192, 0.08);
       padding: 5px 10px;
-      font-size: .72rem;
-      font-weight: 700;
-    }
-
-    .dashboard-card {
-      position: relative;
-      z-index: 1;
-      margin-top: 30px;
-      border: 1px solid rgba(255,255,255,.1);
-      border-radius: 20px;
-      background: rgba(8,17,31,.56);
-      padding: 25px;
-    }
-
-    .dashboard-kicker {
-      color: var(--muted);
-      font-size: .82rem;
-      margin-bottom: 8px;
-    }
-
-    .dashboard-title {
-      font-size: 1.6rem;
+      border-radius: 30px;
+      font-size: 11px;
       font-weight: 800;
-      letter-spacing: -.04em;
-      line-height: 1.2;
-      margin: 0 0 8px;
     }
 
-    .dashboard-desc {
-      color: var(--muted);
-      font-size: .9rem;
-      margin: 0;
-    }
-
-    .progress-track {
-      height: 8px;
-      border-radius: 99px;
-      background: rgba(255,255,255,.08);
-      margin: 24px 0 10px;
-      overflow: hidden;
-    }
-
-    .progress-fill {
-      height: 100%;
-      width: 68%;
-      border-radius: inherit;
-      background: linear-gradient(90deg, var(--blue), var(--cyan));
-    }
-
-    .progress-caption {
-      display: flex;
-      justify-content: space-between;
-      gap: 10px;
-      color: #b8c7d9;
-      font-size: .76rem;
-    }
-
-    .steps-preview {
-      position: relative;
-      z-index: 1;
+    .preview-symbol {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 10px;
-      margin-top: 16px;
+      place-items: center;
+      width: 76px;
+      height: 76px;
+      border-radius: 24px;
+      background: linear-gradient(135deg, var(--cyan), var(--blue));
+      color: #081725;
+      font-size: 38px;
+      font-weight: 900;
+      margin-bottom: 22px;
     }
 
-    .step-tile {
-      padding: 13px 10px;
-      border: 1px solid var(--line);
-      border-radius: 13px;
-      background: rgba(255,255,255,.025);
+    .preview-card h2 {
+      font-size: 26px;
+      line-height: 1.35;
+      margin-bottom: 10px;
     }
 
-    .step-icon {
-      font-size: 1.2rem;
-      margin-bottom: 7px;
+    .preview-card > p {
+      color: var(--muted);
+      font-size: 14px;
+      margin-bottom: 25px;
     }
 
-    .step-tile strong {
+    .preview-feature {
+      display: flex;
+      align-items: flex-start;
+      gap: 13px;
+      padding: 15px 0;
+      border-top: 1px solid rgba(255, 255, 255, 0.07);
+    }
+
+    .feature-icon {
+      display: grid;
+      place-items: center;
+      width: 38px;
+      height: 38px;
+      border-radius: 12px;
+      flex-shrink: 0;
+      background: rgba(85, 217, 233, 0.09);
+      color: var(--cyan);
+    }
+
+    .feature-text strong {
       display: block;
-      font-size: .78rem;
+      font-size: 14px;
+      margin-bottom: 3px;
     }
 
-    .step-tile small {
+    .feature-text span {
       display: block;
       color: var(--muted);
-      font-size: .69rem;
-      line-height: 1.4;
-      margin-top: 3px;
+      font-size: 12px;
+      line-height: 1.6;
     }
 
-    /* GENERAL SECTIONS */
+    /* SECTIONS */
 
-    .section {
-      padding: 76px 0;
-      border-top: 1px solid rgba(255,255,255,.07);
+    section.content-section {
+      padding: 65px 0;
+      border-top: 1px solid rgba(255, 255, 255, 0.055);
     }
 
     .section-heading {
+      text-align: center;
       max-width: 700px;
       margin: 0 auto 38px;
-      text-align: center;
     }
 
-    .section-heading .eyebrow {
-      margin-bottom: 12px;
-    }
-
-    h2 {
-      font-size: clamp(1.8rem, 3.5vw, 2.7rem);
-      letter-spacing: -.045em;
-      line-height: 1.15;
-      margin: 0 0 13px;
+    .section-heading h2 {
+      font-size: clamp(28px, 4vw, 40px);
+      line-height: 1.25;
+      letter-spacing: -1px;
+      margin-bottom: 15px;
     }
 
     .section-heading p {
       color: var(--muted);
-      margin: 0;
+      font-size: 16px;
     }
 
-    .how-grid {
+    .steps-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 18px;
+      gap: 20px;
     }
 
-    .how-card {
+    .step-card {
       padding: 25px;
-      border: 1px solid var(--line);
-      border-radius: 18px;
-      background: linear-gradient(
-        150deg,
-        rgba(21,36,58,.82),
-        rgba(15,27,45,.82)
-      );
+      border: 1px solid var(--border);
+      border-radius: 19px;
+      background: rgba(18, 34, 56, 0.68);
     }
 
-    .number {
+    .step-number {
       display: grid;
       place-items: center;
-      width: 40px;
-      height: 40px;
-      border-radius: 12px;
-      margin-bottom: 20px;
+      width: 42px;
+      height: 42px;
+      border-radius: 13px;
       color: var(--cyan);
-      background: rgba(84,228,233,.09);
-      border: 1px solid rgba(84,228,233,.18);
-      font-weight: 850;
+      background: rgba(85, 217, 233, 0.1);
+      font-weight: 900;
+      margin-bottom: 19px;
     }
 
-    .how-card h3 {
-      font-size: 1.08rem;
-      margin: 0 0 8px;
+    .step-card h3 {
+      font-size: 18px;
+      margin-bottom: 9px;
     }
 
-    .how-card p {
+    .step-card p {
       color: var(--muted);
-      margin: 0;
-      font-size: .92rem;
+      font-size: 14px;
+      line-height: 1.8;
     }
 
-    /* ABOUT SECTION */
-
-    .about-strip {
-      display: grid;
-      grid-template-columns: .8fr 1.2fr;
-      gap: 35px;
-      align-items: center;
-      padding: 34px;
-      background: linear-gradient(
-        110deg,
-        rgba(84,228,233,.07),
-        rgba(118,168,255,.05)
-      );
-      border: 1px solid var(--line);
-      border-radius: 22px;
-    }
-
-    .about-strip h2 {
-      margin: 0;
-    }
-
-    .about-strip p {
-      color: #bdc9d9;
-      margin: 0;
-    }
-
-    /* WAITLIST SECTION */
+    /* WAITLIST */
 
     .waitlist-section {
-      padding: 78px 0;
+      padding: 70px 0 80px;
+      border-top: 1px solid rgba(255, 255, 255, 0.055);
     }
 
-    .waitlist-panel {
-      display: grid;
-      grid-template-columns: .9fr 1.1fr;
-      gap: 35px;
-      align-items: start;
-      padding: clamp(24px, 4vw, 44px);
-      border: 1px solid rgba(84,228,233,.22);
-      border-radius: 26px;
-      background: linear-gradient(
-        135deg,
-        rgba(21,36,58,.96),
-        rgba(14,25,42,.98)
-      );
-      box-shadow: 0 28px 80px rgba(0,0,0,.18);
+    .waitlist-card {
+      width: min(650px, 100%);
+      margin: 0 auto;
+      padding: 38px;
+      border: 1px solid var(--border);
+      border-radius: 28px;
+      background:
+        linear-gradient(
+          145deg,
+          rgba(20, 39, 62, 0.96),
+          rgba(13, 27, 45, 0.98)
+        );
+      box-shadow: 0 24px 75px rgba(0, 0, 0, 0.16);
     }
 
-    .waitlist-intro h2 {
-      margin: 0 0 15px;
+    .waitlist-card h2 {
+      font-size: clamp(28px, 4vw, 37px);
+      line-height: 1.25;
+      margin-bottom: 13px;
+      letter-spacing: -1px;
     }
 
-    .waitlist-intro p {
+    .waitlist-intro {
       color: var(--muted);
-      margin: 0 0 20px;
+      font-size: 16px;
+      margin-bottom: 25px;
     }
 
-    .waitlist-note {
+    .privacy-note {
       display: flex;
-      gap: 12px;
       align-items: flex-start;
-      padding: 14px;
-      border-radius: 13px;
-      background: rgba(255,255,255,.035);
-      color: #c4d0df;
-      font-size: .84rem;
+      gap: 12px;
+      padding: 17px;
+      margin-bottom: 27px;
+      border-radius: 15px;
+      background: rgba(255, 255, 255, 0.045);
+      color: #bdcad9;
+      font-size: 13px;
+      line-height: 1.8;
     }
 
-    form {
-      min-width: 0;
+    .privacy-note span {
+      font-size: 20px;
+      flex-shrink: 0;
     }
 
-    .form-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 16px;
+    .form-group {
+      margin-bottom: 20px;
     }
 
-    .field {
-      margin-bottom: 16px;
-    }
-
-    .field.full {
-      grid-column: 1 / -1;
-    }
-
-    label {
+    .form-group label {
       display: block;
-      color: #dbe4ef;
-      font-size: .83rem;
+      margin-bottom: 9px;
+      font-size: 14px;
       font-weight: 700;
-      margin-bottom: 7px;
     }
 
-    input,
-    select {
+    .required {
+      color: var(--cyan);
+    }
+
+    .form-control {
       width: 100%;
-      min-height: 49px;
-      padding: 12px 14px;
-      border-radius: 10px;
-      border: 1px solid rgba(255,255,255,.14);
-      background: #0b1525;
+      min-height: 54px;
+      padding: 14px 15px;
       color: var(--text);
-      font: inherit;
-      font-size: .92rem;
+      background: #0c192a;
+      border: 1px solid rgba(164, 194, 224, 0.2);
+      border-radius: 12px;
+      outline: none;
+      transition: border-color 0.2s ease;
     }
 
-    input::placeholder {
-      color: #718198;
+    .form-control::placeholder {
+      color: #73859b;
     }
 
-    input:focus,
-    select:focus {
-      outline: 2px solid rgba(84,228,233,.28);
+    .form-control:focus {
       border-color: var(--cyan);
+      box-shadow: 0 0 0 3px rgba(85, 217, 233, 0.08);
     }
 
-    .submit-btn {
-      width: 100%;
-      min-height: 52px;
-      padding: 12px 18px;
-      border: 0;
-      border-radius: 11px;
+    select.form-control {
       cursor: pointer;
-      background: linear-gradient(110deg, var(--cyan), #a2f1ed);
-      color: #06131d;
-      font: inherit;
-      font-weight: 850;
-      transition: transform .2s, opacity .2s;
     }
 
-    .submit-btn:hover {
-      transform: translateY(-1px);
+    select.form-control option {
+      color: var(--text);
+      background: #0c192a;
     }
 
-    .submit-btn:disabled {
-      opacity: .65;
+    .form-hint {
+      display: block;
+      color: #8295ac;
+      font-size: 12px;
+      margin-top: 7px;
+    }
+
+    .submit-button {
+      width: 100%;
+      margin-top: 7px;
+      border: none;
+      font-size: 16px;
+    }
+
+    .submit-button:disabled {
+      opacity: 0.65;
       cursor: wait;
       transform: none;
     }
 
-    .form-privacy {
-      color: var(--muted);
-      font-size: .76rem;
-      line-height: 1.55;
-      margin: 12px 0 0;
+    .form-error {
+      display: none;
+      margin: 0 0 17px;
+      padding: 12px 14px;
+      color: #ffb8b8;
+      background: rgba(255, 80, 80, 0.08);
+      border: 1px solid rgba(255, 100, 100, 0.22);
+      border-radius: 10px;
+      font-size: 13px;
     }
 
-    #submissionStatus {
-      min-height: 1.4em;
-      color: #b8e9d4;
-      font-size: .86rem;
-      margin: 12px 0 0;
-      overflow-wrap: anywhere;
-    }
-
-    .success-box {
+    .fine-print {
+      color: #8495aa;
+      font-size: 12px;
+      line-height: 1.8;
+      margin-top: 18px;
       text-align: center;
-      padding: 24px 10px;
+    }
+
+    /* SUCCESS MESSAGE */
+
+    .success-panel {
+      display: none;
+      text-align: center;
+      padding: 8px 0 0;
+      animation: fadeIn 0.4s ease;
     }
 
     .success-icon {
       display: grid;
       place-items: center;
-      width: 66px;
-      height: 66px;
-      margin: 0 auto 18px;
+      width: 100px;
+      height: 100px;
+      margin: 0 auto 27px;
+      border: 1px solid rgba(112, 227, 192, 0.35);
       border-radius: 50%;
-      background: rgba(118,224,178,.1);
-      border: 1px solid rgba(118,224,178,.3);
-      font-size: 1.8rem;
+      color: #f6fffc;
+      background: rgba(112, 227, 192, 0.12);
+      font-size: 49px;
+      font-weight: 800;
     }
 
-    .success-box h3 {
-      font-size: 1.7rem;
-      margin: 0 0 10px;
+    .success-panel h2 {
+      font-size: clamp(28px, 4vw, 38px);
+      margin-bottom: 17px;
     }
 
-    .success-box p {
+    .success-panel > p {
+      max-width: 490px;
+      margin: 0 auto 22px;
       color: var(--muted);
-      margin: 0;
+      font-size: 16px;
+      line-height: 1.9;
+    }
+
+    .success-highlight {
+      margin: 24px 0;
+      padding: 19px;
+      border: 1px solid rgba(85, 217, 233, 0.14);
+      border-radius: 16px;
+      background: rgba(85, 217, 233, 0.055);
+      text-align: left;
+    }
+
+    .success-highlight strong {
+      display: block;
+      margin-bottom: 7px;
+      color: var(--cyan);
+      font-size: 15px;
+    }
+
+    .success-highlight p {
+      color: #c0cddd;
+      font-size: 14px;
+      line-height: 1.8;
+    }
+
+    .instagram-button {
+      width: 100%;
+      color: #071522;
+      background: linear-gradient(110deg, #76e4e8, #86baff);
+      margin-bottom: 14px;
+    }
+
+    .success-disclaimer {
+      color: #8fa1b7;
+      font-size: 12px;
+      line-height: 1.8;
+      margin-top: 8px;
+    }
+
+    .success-disclaimer strong {
+      color: #b8c5d6;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(8px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     /* FOOTER */
 
     footer {
-      padding: 30px 0 35px;
-      border-top: 1px solid rgba(255,255,255,.08);
-      color: var(--muted);
-      font-size: .82rem;
+      padding: 42px 0 27px;
+      border-top: 1px solid rgba(255, 255, 255, 0.07);
+      background: rgba(5, 13, 23, 0.3);
     }
 
-    .footer-inner {
+    .footer-top {
       display: flex;
-      flex-wrap: wrap;
       justify-content: space-between;
       align-items: center;
-      gap: 18px;
+      gap: 25px;
+      flex-wrap: wrap;
+      margin-bottom: 27px;
     }
 
     .footer-links {
       display: flex;
       flex-wrap: wrap;
-      gap: 16px;
+      gap: 23px;
+      color: #b5c5d6;
+      font-size: 14px;
     }
 
-    footer a {
-      color: #b9e9ec;
-      text-decoration: none;
+    .footer-links a:hover {
+      color: var(--cyan);
     }
 
-    footer a:hover {
-      text-decoration: underline;
+    .footer-disclaimer {
+      color: #8291a5;
+      font-size: 12px;
+      line-height: 1.9;
+      max-width: 850px;
+      margin-bottom: 20px;
     }
 
-    .disclosure {
-      margin-top: 18px;
-      max-width: 900px;
-      font-size: .76rem;
-      color: #8291a6;
+    .copyright {
+      color: #6f8096;
+      font-size: 12px;
     }
 
-    /* RESPONSIVE DESIGN */
+    /* RESPONSIVE */
 
     @media (max-width: 850px) {
       .hero {
+        padding-top: 55px;
+      }
+
+      .hero-grid {
         grid-template-columns: 1fr;
-        padding-top: 48px;
+        gap: 35px;
       }
 
-      .visual {
-        min-height: auto;
+      .hero-copy {
+        text-align: center;
       }
 
-      .waitlist-panel,
-      .about-strip {
+      .hero-description {
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .hero-actions {
+        justify-content: center;
+      }
+
+      .hero-note {
+        text-align: center;
+      }
+
+      .preview-card {
+        max-width: 560px;
+        width: 100%;
+        margin: 0 auto;
+      }
+
+      .steps-grid {
         grid-template-columns: 1fr;
       }
 
-      .how-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .how-card {
-        padding: 22px;
+      .step-card {
+        padding: 23px;
       }
     }
 
     @media (max-width: 520px) {
-      .wrap {
-        width: min(var(--max), calc(100% - 28px));
+      .container {
+        width: calc(100% - 30px);
       }
 
-      .topbar {
-        padding: 16px 0;
+      .nav {
+        min-height: 72px;
       }
 
       .brand {
-        font-size: 1.15rem;
+        gap: 9px;
+        font-size: 18px;
       }
 
-      .brand-mark {
-        width: 37px;
-        height: 37px;
+      .brand-icon {
+        width: 40px;
+        height: 40px;
+        border-radius: 12px;
+        font-size: 22px;
       }
 
-      .status-pill {
-        font-size: .68rem;
-        padding: 7px 9px;
+      .nav-badge {
+        padding: 6px 9px;
+        font-size: 10px;
       }
 
       .hero {
-        padding: 43px 0 52px;
-        gap: 30px;
+        padding: 48px 0;
       }
 
       h1 {
-        font-size: clamp(2.45rem, 12vw, 3.4rem);
+        font-size: 41px;
+        letter-spacing: -1.6px;
       }
 
-      .visual {
-        padding: 16px;
+      .hero-description {
+        font-size: 16px;
+      }
+
+      .hero-actions .button {
+        width: 100%;
+      }
+
+      .preview-card {
+        padding: 23px;
         border-radius: 22px;
       }
 
-      .dashboard-card {
-        padding: 19px;
-      }
-
-      .steps-preview {
-        gap: 7px;
-      }
-
-      .step-tile {
-        padding: 10px 8px;
-      }
-
-      .section {
-        padding: 55px 0;
-      }
-
-      .about-strip {
-        padding: 24px;
+      section.content-section {
+        padding: 49px 0;
       }
 
       .waitlist-section {
-        padding: 55px 0;
+        padding: 48px 0 58px;
       }
 
-      .waitlist-panel {
-        padding: 22px 17px;
-        gap: 20px;
+      .waitlist-card {
+        padding: 25px 20px;
+        border-radius: 22px;
       }
 
-      .form-grid {
-        grid-template-columns: 1fr;
-        gap: 0;
+      .waitlist-intro {
+        font-size: 14px;
       }
 
-      .field.full {
-        grid-column: auto;
+      .privacy-note {
+        padding: 14px;
+        font-size: 12px;
       }
 
-      .footer-inner {
+      .success-icon {
+        width: 84px;
+        height: 84px;
+        font-size: 41px;
+      }
+
+      .success-panel > p {
+        font-size: 14px;
+      }
+
+      .footer-top {
         align-items: flex-start;
         flex-direction: column;
+      }
+
+      .footer-links {
+        gap: 18px;
       }
     }
 
     @media (prefers-reduced-motion: reduce) {
-      html {
-        scroll-behavior: auto;
-      }
-
       *,
       *::before,
       *::after {
-        transition-duration: .01ms !important;
-        animation-duration: .01ms !important;
+        scroll-behavior: auto !important;
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
       }
     }
   </style>
@@ -777,139 +816,162 @@
 <body>
 
   <!-- HEADER -->
-  <header class="wrap topbar">
-    <a class="brand" href="#" aria-label="PayFreeRewards home">
-      <span class="brand-mark" aria-hidden="true">P</span>
-      <span class="brand-name">PayFree<span>Rewards</span></span>
-    </a>
+  <header>
+    <div class="container nav">
+      <a class="brand" href="#" aria-label="PayFreeRewards home">
+        <span class="brand-icon">P</span>
 
-    <span class="status-pill">
-      <span class="status-dot" aria-hidden="true"></span>
-      Pre-launch community
-    </span>
+        <span class="brand-name">
+          PayFree<span>Rewards</span>
+        </span>
+      </a>
+
+      <span class="nav-badge">PRE-LAUNCH COMMUNITY</span>
+    </div>
   </header>
 
   <main>
 
     <!-- HERO SECTION -->
-    <section class="wrap hero" aria-labelledby="hero-title">
-      <div>
-        <div class="eyebrow">A new journey is taking shape</div>
+    <section class="hero">
+      <div class="container hero-grid">
 
-        <h1 id="hero-title">
-          Your time. Your tasks.
-          <span class="highlight">Your rewards.</span>
-        </h1>
+        <div class="hero-copy">
+          <div class="eyebrow">
+            Introducing PayFreeRewards
+          </div>
 
-        <p class="hero-copy">
-          Discover PayFreeRewards and join our community as we prepare
-          for launch. Sign up to receive updates about the platform and
-          what comes next.
-        </p>
+          <h1>
+            Your time.<br>
+            Your tasks.<br>
+            <span class="gradient-text">Your rewards.</span>
+          </h1>
 
-        <div class="hero-points">
-          <span><b class="check" aria-hidden="true">✓</b> Free to join the waitlist</span>
-          <span><b class="check" aria-hidden="true">✓</b> Launch updates</span>
-          <span><b class="check" aria-hidden="true">✓</b> No purchase required to register</span>
-        </div>
-
-        <a class="primary-link" href="#waitlist">
-          Join the waitlist <span aria-hidden="true">→</span>
-        </a>
-
-        <p class="microcopy">
-          Joining the waitlist does not guarantee rewards, savings or a launch date.
-        </p>
-      </div>
-
-      <!-- DECORATIVE PRODUCT PREVIEW -->
-      <div class="visual" aria-label="Preview of the PayFreeRewards pre-launch journey">
-        <div class="visual-top">
-          <span class="visual-label">Your PayFreeRewards journey</span>
-          <span class="mini-badge">PRE-LAUNCH</span>
-        </div>
-
-        <div class="dashboard-card">
-          <div class="dashboard-kicker">A simpler way to stay in the loop</div>
-
-          <p class="dashboard-title">Be part of what's next.</p>
-
-          <p class="dashboard-desc">
-            Get updates as the platform takes shape and learn about
-            available features when they're announced.
+          <p class="hero-description">
+            We are preparing PayFreeRewards for its next chapter.
+            Join our pre-launch waitlist to register your interest
+            and stay connected for future announcements.
           </p>
 
-          <div class="progress-track" aria-hidden="true">
-            <div class="progress-fill"></div>
+          <div class="hero-actions">
+            <a class="button button-primary" href="#waitlist">
+              Join the Waitlist
+              <span aria-hidden="true">→</span>
+            </a>
+
+            <a
+              class="button button-secondary"
+              href="https://www.instagram.com/payfree_rewards/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Follow Our Journey
+            </a>
           </div>
 
-          <div class="progress-caption">
-            <span>Building the experience</span>
-            <span>In progress</span>
+          <p class="hero-note">
+            Free to register · No email required · Pre-launch stage
+          </p>
+        </div>
+
+        <div class="preview-card">
+          <div class="preview-top">
+            <span class="preview-label">The PayFreeRewards journey</span>
+            <span class="status-pill">IN PREPARATION</span>
+          </div>
+
+          <div class="preview-symbol">P</div>
+
+          <h2>
+            A new journey<br>
+            starts with you.
+          </h2>
+
+          <p>
+            Register your interest and stay informed as we prepare
+            for launch.
+          </p>
+
+          <div class="preview-feature">
+            <div class="feature-icon">✓</div>
+
+            <div class="feature-text">
+              <strong>Join the Waitlist</strong>
+              <span>Register your interest in a few simple steps.</span>
+            </div>
+          </div>
+
+          <div class="preview-feature">
+            <div class="feature-icon">↗</div>
+
+            <div class="feature-text">
+              <strong>Stay Connected</strong>
+              <span>Follow our official channels for announcements.</span>
+            </div>
+          </div>
+
+          <div class="preview-feature">
+            <div class="feature-icon">◎</div>
+
+            <div class="feature-text">
+              <strong>Future Updates</strong>
+              <span>Confirmed details will be shared when available.</span>
+            </div>
           </div>
         </div>
 
-        <div class="steps-preview">
-          <div class="step-tile">
-            <div class="step-icon" aria-hidden="true">✉</div>
-            <strong>Join</strong>
-            <small>Register your interest</small>
-          </div>
-
-          <div class="step-tile">
-            <div class="step-icon" aria-hidden="true">↗</div>
-            <strong>Stay updated</strong>
-            <small>Follow launch news</small>
-          </div>
-
-          <div class="step-tile">
-            <div class="step-icon" aria-hidden="true">✦</div>
-            <strong>Explore</strong>
-            <small>Learn what's available</small>
-          </div>
-        </div>
       </div>
     </section>
 
     <!-- HOW IT WORKS -->
-    <section class="section">
-      <div class="wrap">
+    <section class="content-section">
+      <div class="container">
 
         <div class="section-heading">
-          <div class="eyebrow">How it works</div>
-          <h2>Start with three simple steps</h2>
+          <div class="eyebrow">Simple steps</div>
+
+          <h2>
+            Be part of the <span class="gradient-text">journey</span>
+          </h2>
+
           <p>
-            We're preparing the PayFreeRewards experience.
-            Here's what you can do today.
+            Register your interest today and stay connected with
+            PayFreeRewards as we prepare for launch.
           </p>
         </div>
 
-        <div class="how-grid">
+        <div class="steps-grid">
 
-          <article class="how-card">
-            <div class="number">01</div>
-            <h3>Join the waitlist</h3>
+          <article class="step-card">
+            <div class="step-number">01</div>
+
+            <h3>Join the Waitlist</h3>
+
             <p>
-              Share the requested details so we can register your
-              interest in the upcoming platform.
+              Enter your name, mobile number and network operator
+              using our simple registration form.
             </p>
           </article>
 
-          <article class="how-card">
-            <div class="number">02</div>
-            <h3>Keep in touch</h3>
+          <article class="step-card">
+            <div class="step-number">02</div>
+
+            <h3>Stay Connected</h3>
+
             <p>
-              Watch for relevant pre-launch announcements and updates
-              using the contact details you provide.
+              Follow our official social channels to keep up with
+              announcements and future updates.
             </p>
           </article>
 
-          <article class="how-card">
-            <div class="number">03</div>
-            <h3>Explore at launch</h3>
+          <article class="step-card">
+            <div class="step-number">03</div>
+
+            <h3>Explore Future Updates</h3>
+
             <p>
-              When features and participation terms are announced,
-              review the details before deciding whether to take part.
+              Information about features, eligibility and terms
+              will be shared when officially confirmed.
             </p>
           </article>
 
@@ -918,21 +980,20 @@
     </section>
 
     <!-- ABOUT SECTION -->
-    <section class="section">
-      <div class="wrap">
+    <section class="content-section">
+      <div class="container">
 
-        <div class="about-strip">
-          <div>
-            <div class="eyebrow">About PayFreeRewards</div>
-            <h2>Built around everyday digital life.</h2>
-          </div>
+        <div class="section-heading">
+          <div class="eyebrow">About our journey</div>
+
+          <h2>
+            Built with a <span class="gradient-text">clear purpose</span>
+          </h2>
 
           <p>
-            PayFreeRewards is preparing a platform focused on digital
-            engagement and rewards. We're currently building our
-            pre-launch community. Specific activities, eligibility,
-            reward availability and redemption terms will be shared
-            only when confirmed.
+            PayFreeRewards is currently in the pre-launch stage.
+            We are preparing the platform and working toward sharing
+            more information when the details are confirmed.
           </p>
         </div>
 
@@ -941,100 +1002,167 @@
 
     <!-- WAITLIST FORM -->
     <section class="waitlist-section" id="waitlist">
-      <div class="wrap">
+      <div class="container">
 
-        <div class="waitlist-panel">
+        <div class="waitlist-card">
 
-          <div class="waitlist-intro">
-            <div class="eyebrow">Be in the know</div>
+          <div id="formContent">
 
-            <h2>Join the pre-launch waitlist.</h2>
+            <div class="eyebrow">Early access waitlist</div>
 
-            <p>
+            <h2>
+              Join the <span class="gradient-text">PayFreeRewards</span>
+              Waitlist
+            </h2>
+
+            <p class="waitlist-intro">
               Register your interest and stay connected as
               PayFreeRewards prepares for launch.
             </p>
 
-            <div class="waitlist-note">
+            <div class="privacy-note">
               <span aria-hidden="true">🔐</span>
-              <span>
+
+              <div>
                 We ask for your details to manage your waitlist
                 registration and communicate relevant updates.
                 Please review our privacy information before submitting.
-              </span>
+              </div>
             </div>
-          </div>
 
-          <div>
-            <form id="payfreeWaitlistForm">
+            <div
+              id="formError"
+              class="form-error"
+              role="alert"
+              aria-live="polite"
+            ></div>
 
-              <div class="form-grid">
+            <form id="waitlistForm">
 
-                <div class="field full">
-                  <label for="name">Full name</label>
+              <div class="form-group">
+                <label for="fullName">
+                  Full Name <span class="required">*</span>
+                </label>
 
-                  <input
-                    type="text"
-                    id="name"
-                    name="name"
-                    placeholder="Enter your full name"
-                    autocomplete="name"
-                    maxlength="100"
-                    required
-                  >
-                </div>
-
-                <div class="field full">
-                  <label for="phone">Mobile number (India)</label>
-
-                  <input
-                    type="tel"
-                    id="phone"
-                    name="phone"
-                    placeholder="10-digit mobile number"
-                    autocomplete="tel-national"
-                    inputmode="numeric"
-                    pattern="[6-9][0-9]{9}"
-                    maxlength="10"
-                    aria-describedby="phone-help"
-                    required
-                  >
-
-                  <div id="phone-help" class="form-privacy">
-                    Enter a 10-digit Indian mobile number beginning with
-                    6, 7, 8 or 9.
-                  </div>
-                </div>
-
-                <div class="field full">
-                  <label for="operator">Network provider</label>
-
-                  <select id="operator" name="operator" required>
-                    <option value="" disabled selected>Select your provider</option>
-                    <option value="Jio">Reliance Jio</option>
-                    <option value="Airtel">Bharti Airtel</option>
-                    <option value="VI">Vodafone Idea (Vi)</option>
-                    <option value="BSNL">BSNL</option>
-                    <option value="Other">Other / Not listed</option>
-                  </select>
-                </div>
-
+                <input
+                  class="form-control"
+                  type="text"
+                  id="fullName"
+                  name="name"
+                  placeholder="Enter your full name"
+                  autocomplete="name"
+                  maxlength="100"
+                  required
+                >
               </div>
 
-              <button type="submit" class="submit-btn" id="submitButton">
-                Join the waitlist <span aria-hidden="true">→</span>
+              <div class="form-group">
+                <label for="phone">
+                  Mobile Number <span class="required">*</span>
+                </label>
+
+                <input
+                  class="form-control"
+                  type="tel"
+                  id="phone"
+                  name="phone"
+                  placeholder="Enter your 10-digit mobile number"
+                  inputmode="numeric"
+                  autocomplete="tel-national"
+                  maxlength="10"
+                  pattern="[6-9][0-9]{9}"
+                  title="Enter a valid 10-digit Indian mobile number starting with 6, 7, 8 or 9."
+                  required
+                >
+
+                <span class="form-hint">
+                  Enter your 10-digit Indian mobile number.
+                </span>
+              </div>
+
+              <div class="form-group">
+                <label for="operator">
+                  Network Operator <span class="required">*</span>
+                </label>
+
+                <select
+                  class="form-control"
+                  id="operator"
+                  name="operator"
+                  required
+                >
+                  <option value="">Select your operator</option>
+                  <option value="Jio">Jio</option>
+                  <option value="Airtel">Airtel</option>
+                  <option value="Vi">Vi</option>
+                  <option value="BSNL">BSNL</option>
+                </select>
+              </div>
+
+              <button
+                class="button button-primary submit-button"
+                type="submit"
+                id="submitButton"
+              >
+                Join the Waitlist
+                <span aria-hidden="true">→</span>
               </button>
 
-              <p class="form-privacy">
-                By submitting, you confirm that the information provided
-                is yours and agree that PayFreeRewards may use it to
-                manage this pre-launch waitlist and send relevant updates.
-                Avoid submitting information you do not wish to share.
+              <p class="fine-print">
+                By submitting, you confirm that the information
+                provided is accurate. Registration is free and
+                does not guarantee acceptance into a future programme
+                or eligibility for any benefits.
               </p>
 
-              <p id="submissionStatus" role="status" aria-live="polite"></p>
-
             </form>
+          </div>
+
+          <!-- SUCCESS MESSAGE -->
+          <div
+            id="successPanel"
+            class="success-panel"
+            role="status"
+            aria-live="polite"
+          >
+
+            <div class="success-icon" aria-hidden="true">✓</div>
+
+            <h2>
+              Thanks for your <span class="gradient-text">interest!</span>
+            </h2>
+
+            <p>
+              Thank you for joining the PayFreeRewards waitlist.
+              We’re glad to have you as part of our growing community.
+            </p>
+
+            <div class="success-highlight">
+              <strong>📢 Stay Connected With Us</strong>
+
+              <p>
+                Follow PayFreeRewards on Instagram to stay informed
+                about announcements and future launch updates.
+              </p>
+            </div>
+
+            <a
+              class="button instagram-button"
+              href="https://www.instagram.com/payfree_rewards/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Follow @payfree_rewards
+              <span aria-hidden="true">↗</span>
+            </a>
+
+            <p class="success-disclaimer">
+              <strong>Submission note:</strong>
+              This message means your browser sent the submission
+              request. It does not independently verify that Google
+              Forms saved the response.
+            </p>
+
           </div>
 
         </div>
@@ -1045,123 +1173,174 @@
 
   <!-- FOOTER -->
   <footer>
-    <div class="wrap">
+    <div class="container">
 
-      <div class="footer-inner">
+      <div class="footer-top">
 
         <a class="brand" href="#" aria-label="PayFreeRewards home">
-          <span class="brand-mark" aria-hidden="true">P</span>
-          <span class="brand-name">PayFree<span>Rewards</span></span>
+          <span class="brand-icon">P</span>
+
+          <span class="brand-name">
+            PayFree<span>Rewards</span>
+          </span>
         </a>
 
-        <div class="footer-links">
-          <a href="mailto:payfreerewardswaitlist@gmail.com">Contact us</a>
+        <nav class="footer-links" aria-label="Footer navigation">
+
+          <a href="mailto:payfreerewardswaitlist@gmail.com">
+            Contact Us
+          </a>
 
           <a
             href="https://www.instagram.com/payfree_rewards/"
             target="_blank"
             rel="noopener noreferrer"
-          >Instagram</a>
+          >
+            Instagram
+          </a>
 
           <a
             href="https://youtube.com/@payfreerewards"
             target="_blank"
             rel="noopener noreferrer"
-          >YouTube</a>
-        </div>
+          >
+            YouTube
+          </a>
 
+        </nav>
       </div>
 
-      <p class="disclosure">
-        PayFreeRewards is in pre-launch. Joining the waitlist is free and
-        does not guarantee acceptance into any future programme, rewards,
-        savings, free recharges, or a particular launch date. Features,
-        eligibility, reward availability and redemption terms, if any,
-        will be communicated when finalised. Please contact us with
-        questions about the use of your waitlist information.
+      <p class="footer-disclaimer">
+        PayFreeRewards is currently in the pre-launch stage.
+        Joining the waitlist is free and does not guarantee acceptance
+        into any future programme, rewards, savings, free recharges
+        or a particular launch date. Features, eligibility criteria
+        and terms will be communicated when officially confirmed.
+        Registration information is collected to manage the waitlist
+        and communicate relevant updates.
       </p>
 
-      <p style="margin:18px 0 0">
-        © 2026 PayFreeRewards. All rights reserved.
+      <p class="copyright">
+        © <span id="currentYear">2026</span> PayFreeRewards.
+        All rights reserved.
       </p>
 
     </div>
   </footer>
 
-  <!-- GOOGLE FORMS INTEGRATION -->
+  <!-- Hidden iframe used for background Google Forms submission -->
+  <iframe
+    name="googleFormFrame"
+    id="googleFormFrame"
+    title="Google Forms submission"
+    style="display:none"
+  ></iframe>
+
   <script>
-    (function () {
-      'use strict';
+    /*
+     * GOOGLE FORMS CONFIGURATION
+     *
+     * These are the existing form action URL and entry IDs.
+     * Do not change them unless the Google Form fields or IDs change.
+     */
 
-      const waitlistForm = document.getElementById('payfreeWaitlistForm');
-      const submitButton = document.getElementById('submitButton');
-      const status = document.getElementById('submissionStatus');
+    const GOOGLE_FORM_ACTION =
+      "https://docs.google.com/forms/d/e/" +
+      "1FAIpQLSenEBIRmUuFzowLMHAZEFnqErcYQrUbQkMcd5qiPsO60ifCyw/" +
+      "formResponse";
 
-      /*
-       * Existing Google Form URL and entry IDs from your original code.
-       * These IDs must match the actual fields in your Google Form.
-       */
-      const GOOGLE_FORM_ACTION =
-        'https://docs.google.com/forms/d/e/' +
-        '1FAIpQLSenEBIRmUuFzowLMHAZEFnqErcYQrUbQkMcd5qiPsO60ifCyw/' +
-        'formResponse';
+    const ENTRY_IDS = {
+      name: "entry.1209669372",
+      phone: "entry.449938509",
+      operator: "entry.118947300"
+    };
 
-      const ENTRY_IDS = {
-        name: 'entry.1209669372',
-        phone: 'entry.449938509',
-        operator: 'entry.118947300'
-      };
+    const waitlistForm = document.getElementById("waitlistForm");
+    const formContent = document.getElementById("formContent");
+    const successPanel = document.getElementById("successPanel");
+    const formError = document.getElementById("formError");
+    const submitButton = document.getElementById("submitButton");
+    const googleFormFrame = document.getElementById("googleFormFrame");
 
-      /*
-       * Google Forms does not provide this page with a reliable
-       * cross-origin confirmation that a response was saved.
-       */
-      let submissionStarted = false;
+    let submissionInProgress = false;
 
-      waitlistForm.addEventListener('submit', function (event) {
-        event.preventDefault();
+    /*
+     * Update the copyright year automatically.
+     */
+    document.getElementById("currentYear").textContent =
+      new Date().getFullYear();
 
-        if (submissionStarted) {
-          return;
-        }
+    /*
+     * Keep the mobile number input numeric and limited to 10 digits.
+     */
+    const phoneInput = document.getElementById("phone");
 
-        const name = document.getElementById('name').value.trim();
-        const phone = document.getElementById('phone').value.trim();
-        const operator = document.getElementById('operator').value;
+    phoneInput.addEventListener("input", function () {
+      this.value = this.value.replace(/\D/g, "").slice(0, 10);
+    });
 
-        if (!name || !phone || !operator) {
-          status.textContent = 'Please complete all fields.';
-          return;
-        }
+    /*
+     * Submit the form to Google Forms in a hidden iframe.
+     *
+     * IMPORTANT:
+     * Browsers do not allow this page to reliably read the Google Forms
+     * response because it is on a different origin.
+     *
+     * Therefore, the success panel is a user-friendly acknowledgement
+     * that the request was sent, not proof that Google saved it.
+     */
 
-        if (!/^[6-9]\d{9}$/.test(phone)) {
-          status.textContent =
-            'Please enter a valid 10-digit Indian mobile number.';
+    waitlistForm.addEventListener("submit", function (event) {
+      event.preventDefault();
 
-          document.getElementById('phone').focus();
-          return;
-        }
+      if (submissionInProgress) {
+        return;
+      }
 
-        submissionStarted = true;
-        submitButton.disabled = true;
-        status.textContent = 'Sending your registration…';
+      formError.style.display = "none";
+      formError.textContent = "";
 
-        const responseFrame = document.createElement('iframe');
+      const name = document.getElementById("fullName").value.trim();
+      const phone = phoneInput.value.trim();
+      const operator = document.getElementById("operator").value;
 
-        responseFrame.name = 'payfreeGoogleFormResponse_' + Date.now();
-        responseFrame.title = 'Hidden waitlist submission response';
-        responseFrame.style.display = 'none';
-        responseFrame.setAttribute('aria-hidden', 'true');
+      if (name.length < 2) {
+        showFormError("Please enter your full name.");
+        document.getElementById("fullName").focus();
+        return;
+      }
 
-        document.body.appendChild(responseFrame);
+      if (!/^[6-9][0-9]{9}$/.test(phone)) {
+        showFormError(
+          "Please enter a valid 10-digit Indian mobile number."
+        );
+        phoneInput.focus();
+        return;
+      }
 
-        const submission = document.createElement('form');
+      if (!["Jio", "Airtel", "Vi", "BSNL"].includes(operator)) {
+        showFormError("Please select your network operator.");
+        document.getElementById("operator").focus();
+        return;
+      }
 
-        submission.method = 'POST';
-        submission.action = GOOGLE_FORM_ACTION;
-        submission.target = responseFrame.name;
-        submission.acceptCharset = 'UTF-8';
-        submission.style.display = 'none';
+      submissionInProgress = true;
+      submitButton.disabled = true;
+      submitButton.textContent = "Submitting...";
+
+      try {
+        /*
+         * Build a standard HTML form targeting the hidden iframe.
+         * This preserves the existing Google Forms entry IDs.
+         */
+
+        const googleForm = document.createElement("form");
+
+        googleForm.method = "POST";
+        googleForm.action = GOOGLE_FORM_ACTION;
+        googleForm.target = "googleFormFrame";
+        googleForm.acceptCharset = "UTF-8";
+        googleForm.style.display = "none";
 
         const fields = [
           [ENTRY_IDS.name, name],
@@ -1170,47 +1349,60 @@
         ];
 
         fields.forEach(function (field) {
-          const input = document.createElement('input');
+          const input = document.createElement("input");
 
-          input.type = 'hidden';
+          input.type = "hidden";
           input.name = field[0];
           input.value = field[1];
 
-          submission.appendChild(input);
+          googleForm.appendChild(input);
         });
 
-        document.body.appendChild(submission);
+        document.body.appendChild(googleForm);
 
-        try {
-          submission.submit();
+        /*
+         * Submit request to Google Forms.
+         */
+        googleForm.submit();
 
-          waitlistForm.innerHTML =
-            '<div class="success-box">' +
-              '<div class="success-icon" aria-hidden="true">✓</div>' +
-              '<h3>Thanks for your interest!</h3>' +
-              '<p>Your browser has sent the waitlist submission request. ' +
-              'Google Forms does not provide this page with a reliable ' +
-              'confirmation that the response was saved, so please contact ' +
-              'us if you do not receive any expected follow-up.</p>' +
-            '</div>';
+        /*
+         * The browser cannot confirm whether Google Forms saved the
+         * response. Wait briefly, then display the acknowledgement.
+         */
+        window.setTimeout(function () {
+          googleForm.remove();
 
-        } catch (error) {
-          submissionStarted = false;
-          submitButton.disabled = false;
+          formContent.style.display = "none";
+          successPanel.style.display = "block";
 
-          status.textContent =
-            'We could not send your details. Please try again.';
+          submissionInProgress = false;
 
-        } finally {
-          window.setTimeout(function () {
-            submission.remove();
-            responseFrame.remove();
-          }, 3000);
-        }
-      });
+          document.getElementById("waitlist").scrollIntoView({
+            behavior: "smooth",
+            block: "start"
+          });
+        }, 1200);
 
-    })();
+      } catch (error) {
+        submissionInProgress = false;
+
+        submitButton.disabled = false;
+        submitButton.innerHTML =
+          'Join the Waitlist <span aria-hidden="true">→</span>';
+
+        showFormError(
+          "We could not send the request. Please try again."
+        );
+
+        console.error("Google Forms submission error:", error);
+      }
+    });
+
+    function showFormError(message) {
+      formError.textContent = message;
+      formError.style.display = "block";
+    }
   </script>
 
 </body>
-</html>
+</html>w
