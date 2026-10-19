@@ -318,7 +318,6 @@
       font-size: 12px;
       line-height: 1.7;
     }
-
     /* GENERAL SECTIONS */
 
     .content-section {
@@ -634,8 +633,7 @@
         opacity: 1;
         transform: translateY(0);
       }
-    }
-
+  }
     /* RESPONSIVE */
 
     @media (max-width: 850px) {
@@ -1253,28 +1251,13 @@
     </div>
   </footer>
 
-  <!-- Hidden iframe for background Google Forms submission -->
-  <iframe name="googleFormFrame"
-    id="googleFormFrame"
-    title="Google Forms submission"
-    style="display:none"></iframe>
+  <!-- Hidden iframe receives the Apps Script response. -->
+  <iframe name="waitlistResponseFrame" id="waitlistResponseFrame"
+    title="Waitlist submission response" style="display:none"></iframe>
 
   <script>
-    /*
-     * Existing Google Forms configuration.
-     * Do not change these IDs unless your Google Form changes.
-     */
-
-    const GOOGLE_FORM_ACTION =
-      "https://docs.google.com/forms/d/e/" +
-      "1FAIpQLSenEBIRmUuFzowLMHAZEFnqErcYQrUbQkMcd5qiPsO60ifCyw/" +
-      "formResponse";
-
-    const ENTRY_IDS = {
-      name: "entry.1209669372",
-      phone: "entry.449938509",
-      operator: "entry.118947300"
-    };
+    /* Paste the deployed Apps Script Web App URL here after deployment. */
+    const WAITLIST_WEB_APP_URL = "PASTE_DEPLOYED_APPS_SCRIPT_WEB_APP_URL_HERE";
 
     const waitlistForm = document.getElementById("waitlistForm");
     const formContent = document.getElementById("formContent");
@@ -1282,23 +1265,49 @@
     const formError = document.getElementById("formError");
     const submitButton = document.getElementById("submitButton");
     const phoneInput = document.getElementById("phone");
+    const responseFrame = document.getElementById("waitlistResponseFrame");
 
     let submissionInProgress = false;
+    let activeRequestId = "";
+    let responseTimeout = null;
+    let pendingPostForm = null;
 
-    /* Automatic copyright year */
-    document.getElementById("currentYear").textContent =
-      new Date().getFullYear();
+    document.getElementById("currentYear").textContent = new Date().getFullYear();
 
-    /* Restrict mobile input to digits */
     phoneInput.addEventListener("input", function () {
       this.value = this.value.replace(/\D/g, "").slice(0, 10);
     });
 
+    window.addEventListener("message", function (event) {
+      if (event.source !== responseFrame.contentWindow) return;
+      const data = event.data;
+      if (!data || data.source !== "payfreerewards-waitlist" || data.requestId !== activeRequestId) return;
+
+      window.clearTimeout(responseTimeout);
+      if (pendingPostForm) pendingPostForm.remove();
+      pendingPostForm = null;
+      submissionInProgress = false;
+      activeRequestId = "";
+      submitButton.disabled = false;
+      submitButton.innerHTML = 'Join the Waitlist <span aria-hidden="true">→</span>';
+
+      if (data.status === "success") {
+        formError.style.display = "none";
+        formContent.style.display = "none";
+        successPanel.style.display = "block";
+        if (typeof gtag === "function") gtag("event", "waitlist_submit");
+        document.getElementById("waitlist").scrollIntoView({ behavior: "smooth", block: "start" });
+      } else if (data.status === "duplicate") {
+        showFormError("This mobile number is already registered on the PayFreeRewards waitlist.");
+        phoneInput.focus();
+      } else {
+        showFormError(data.message || "We could not process your registration. Please try again.");
+      }
+    });
+
     waitlistForm.addEventListener("submit", function (event) {
       event.preventDefault();
-
       if (submissionInProgress) return;
-
       formError.style.display = "none";
       formError.textContent = "";
 
@@ -1311,93 +1320,69 @@
         document.getElementById("fullName").focus();
         return;
       }
-
       if (!/^[6-9][0-9]{9}$/.test(phone)) {
-        showFormError(
-          "Please enter a valid 10-digit Indian mobile number."
-        );
+        showFormError("Please enter a valid 10-digit Indian mobile number.");
         phoneInput.focus();
         return;
       }
-
       if (!["Jio", "Airtel", "Vi", "BSNL"].includes(operator)) {
         showFormError("Please select your network operator.");
         document.getElementById("operator").focus();
         return;
       }
+      if (WAITLIST_WEB_APP_URL === "PASTE_DEPLOYED_APPS_SCRIPT_WEB_APP_URL_HERE") {
+        showFormError("Waitlist setup is not complete yet. Please try again later.");
+        return;
+      }
 
       submissionInProgress = true;
+      activeRequestId = (window.crypto && crypto.randomUUID)
+        ? crypto.randomUUID()
+        : String(Date.now()) + "-" + Math.random().toString(36).slice(2);
       submitButton.disabled = true;
-      submitButton.textContent = "Submitting...";
-
-      let googleForm = null;
+      submitButton.textContent = "Submitting securely...";
 
       try {
-        googleForm = document.createElement("form");
-
-        googleForm.method = "POST";
-        googleForm.action = GOOGLE_FORM_ACTION;
-        googleForm.target = "googleFormFrame";
-        googleForm.acceptCharset = "UTF-8";
-        googleForm.style.display = "none";
+        pendingPostForm = document.createElement("form");
+        pendingPostForm.method = "POST";
+        pendingPostForm.action = WAITLIST_WEB_APP_URL;
+        pendingPostForm.target = "waitlistResponseFrame";
+        pendingPostForm.acceptCharset = "UTF-8";
+        pendingPostForm.style.display = "none";
 
         const fields = [
-          [ENTRY_IDS.name, name],
-          [ENTRY_IDS.phone, phone],
-          [ENTRY_IDS.operator, operator]
+          ["name", name], ["phone", phone], ["operator", operator],
+          ["requestId", activeRequestId], ["website", ""]
         ];
-
         fields.forEach(function (field) {
           const input = document.createElement("input");
-
           input.type = "hidden";
           input.name = field[0];
           input.value = field[1];
-
-          googleForm.appendChild(input);
+          pendingPostForm.appendChild(input);
         });
+        document.body.appendChild(pendingPostForm);
+        pendingPostForm.submit();
 
-        document.body.appendChild(googleForm);
-
-        /*
-         * Google Forms receives the request in a hidden iframe.
-         * The browser cannot reliably confirm the saved response.
-         */
-
-        googleForm.submit();
-
-if (typeof gtag === "function") {
-  gtag("event", "waitlist_submit");
-}
-
-        window.setTimeout(function () {
-          if (googleForm) googleForm.remove();
-
-          formContent.style.display = "none";
-          successPanel.style.display = "block";
-
+        responseTimeout = window.setTimeout(function () {
+          if (pendingPostForm) pendingPostForm.remove();
+          pendingPostForm = null;
           submissionInProgress = false;
-
-          document.getElementById("waitlist").scrollIntoView({
-            behavior: "smooth",
-            block: "start"
-          });
-        }, 1200);
-
+          activeRequestId = "";
+          submitButton.disabled = false;
+          submitButton.innerHTML = 'Join the Waitlist <span aria-hidden="true">→</span>';
+          showFormError("No response received. Please wait before retrying to avoid a duplicate request.");
+        }, 25000);
       } catch (error) {
-        if (googleForm) googleForm.remove();
-
+        window.clearTimeout(responseTimeout);
+        if (pendingPostForm) pendingPostForm.remove();
+        pendingPostForm = null;
         submissionInProgress = false;
+        activeRequestId = "";
         submitButton.disabled = false;
-
-        submitButton.innerHTML =
-          'Join the Waitlist <span aria-hidden="true">→</span>';
-
-        showFormError(
-          "We could not send the request. Please try again."
-        );
-
-        console.error("Google Forms submission error:", error);
+        submitButton.innerHTML = 'Join the Waitlist <span aria-hidden="true">→</span>';
+        showFormError("We could not send the request. Please try again.");
+        console.error("PayFreeRewards waitlist submission error:", error);
       }
     });
 
