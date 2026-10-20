@@ -1371,7 +1371,7 @@
           submitButton.disabled = false;
           submitButton.innerHTML = 'Join the Waitlist <span aria-hidden="true">→</span>';
           showFormError("No response received. Please wait before retrying to avoid a duplicate request.");
-        }, 25000);
+        }, 15000);
       } catch (error) {
         window.clearTimeout(responseTimeout);
         if (pendingPostForm) pendingPostForm.remove();
