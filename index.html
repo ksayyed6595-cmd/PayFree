@@ -318,6 +318,7 @@
       font-size: 12px;
       line-height: 1.7;
     }
+
     /* GENERAL SECTIONS */
 
     .content-section {
@@ -426,6 +427,12 @@
       font-size: 20px;
       flex-shrink: 0;
     }
+
+
+    .preference-options { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:8px; }
+    .preference-options label { display:flex; gap:8px; align-items:center; color:var(--muted); font-weight:400; }
+    .preference-options input, #preferenceConsent { accent-color:var(--cyan); }
+    @media (max-width:520px) { .preference-options { grid-template-columns:1fr; } }
 
     .form-group {
       margin-bottom: 20px;
@@ -633,7 +640,8 @@
         opacity: 1;
         transform: translateY(0);
       }
-  }
+    }
+
     /* RESPONSIVE */
 
     @media (max-width: 850px) {
@@ -969,7 +977,7 @@
             <div class="step-number">01</div>
             <h3>Join the Waitlist</h3>
             <p>
-              Enter your name, mobile number and network operator
+              Enter your name, mobile number, network operator and city
               using our simple registration form.
             </p>
           </article>
@@ -1052,58 +1060,79 @@
             <form id="waitlistForm">
 
               <div class="form-group">
-                <label for="fullName">
-                  Full Name <span class="required">*</span>
-                </label>
-
-                <input class="form-control"
-                  type="text"
-                  id="fullName"
-                  name="name"
-                  placeholder="Enter your full name"
-                  autocomplete="name"
-                  maxlength="100"
-                  required>
+                <label for="fullName">Full Name <span class="required">*</span></label>
+                <input class="form-control" type="text" id="fullName" name="name"
+                  placeholder="Enter your full name" autocomplete="name" maxlength="100" required>
               </div>
 
               <div class="form-group">
-                <label for="phone">
-                  Mobile Number <span class="required">*</span>
-                </label>
-
-                <input class="form-control"
-                  type="tel"
-                  id="phone"
-                  name="phone"
-                  placeholder="Enter your 10-digit mobile number"
-                  inputmode="numeric"
-                  autocomplete="tel-national"
-                  maxlength="10"
-                  pattern="[6-9][0-9]{9}"
-                  title="Enter a valid 10-digit Indian mobile number."
-                  required>
-
-                <span class="form-hint">
-                  Enter your 10-digit Indian mobile number.
-                </span>
+                <label for="phone">Mobile Number <span class="required">*</span></label>
+                <input class="form-control" type="tel" id="phone" name="phone"
+                  placeholder="Enter your 10-digit mobile number" inputmode="numeric"
+                  autocomplete="tel-national" maxlength="10" pattern="[6-9][0-9]{9}"
+                  title="Enter a valid 10-digit Indian mobile number." required>
+                <span class="form-hint">Enter your 10-digit Indian mobile number.</span>
               </div>
 
               <div class="form-group">
-                <label for="operator">
-                  Network Operator <span class="required">*</span>
-                </label>
-
-                <select class="form-control"
-                  id="operator"
-                  name="operator"
-                  required>
-
+                <label for="operator">Network Operator <span class="required">*</span></label>
+                <select class="form-control" id="operator" name="operator" required>
                   <option value="">Select your operator</option>
-                  <option value="Jio">Jio</option>
-                  <option value="Airtel">Airtel</option>
-                  <option value="Vi">Vi</option>
-                  <option value="BSNL">BSNL</option>
+                  <option value="Jio">Jio</option><option value="Airtel">Airtel</option>
+                  <option value="Vi">Vi</option><option value="BSNL">BSNL</option>
+                  <option value="None of these">None of these</option>
                 </select>
+              </div>
+
+              <div class="form-group">
+                <label for="city">City <span class="required">*</span></label>
+                <input class="form-control" type="text" id="city" name="city"
+                  placeholder="Enter your city" autocomplete="address-level2" maxlength="80" required>
+              </div>
+
+              <div class="form-group">
+                <label>Preferred Rewards <span class="form-hint">Optional — select all that interest you.</span></label>
+                <div class="preference-options">
+                  <label><input type="checkbox" name="rewards" value="Mobile Recharge"> Mobile Recharge</label>
+                  <label><input type="checkbox" name="rewards" value="Bill Payments"> Bill Payments</label>
+                  <label><input type="checkbox" name="rewards" value="Shopping Rewards"> Shopping Rewards</label>
+                  <label><input type="checkbox" name="rewards" value="Other" id="rewardOtherToggle"> Other</label>
+                </div>
+              </div>
+
+              <div class="form-group" id="otherRewardsGroup" style="display:none">
+                <label for="otherRewards">Other Rewards (optional)</label>
+                <input class="form-control" type="text" id="otherRewards" maxlength="120"
+                  placeholder="Tell us what rewards interest you">
+              </div>
+
+              <div class="form-group">
+                <label for="monthlyRecharge">Monthly Mobile Recharge Range <span class="form-hint">Optional</span></label>
+                <select class="form-control" id="monthlyRecharge">
+                  <option value="">Prefer not to say</option>
+                  <option value="₹0–₹199">₹0–₹199</option>
+                  <option value="₹200–₹499">₹200–₹499</option>
+                  <option value="₹500–₹999">₹500–₹999</option>
+                  <option value="₹1,000 or more">₹1,000 or more</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label style="display:flex;gap:10px;align-items:flex-start;font-weight:400">
+                  <input type="checkbox" id="preferenceConsent" style="margin-top:7px;flex:0 0 auto">
+                  <span>I agree that PayFreeRewards may use my optional rewards preferences and recharge range for pre-launch planning. I can leave this unchecked and still join the waitlist.</span>
+                </label>
+              </div>
+
+              <div id="consentPanel" role="dialog" aria-modal="true" aria-labelledby="consentTitle"
+                style="display:none;margin:16px 0;padding:18px;border:1px solid var(--cyan);border-radius:14px;background:#0d1b2e">
+                <h3 id="consentTitle" style="margin-bottom:8px">Allow Additional Registrations?</h3>
+                <p style="margin-bottom:14px;color:var(--muted)">You have reached the initial limit of 2 successful registrations from this browser. Allow up to 3 additional unique mobile numbers from this browser?</p>
+                <div style="display:flex;flex-wrap:wrap;gap:10px">
+                  <button type="button" class="button button-primary" id="consentAllow">Allow</button>
+                  <button type="button" class="button" id="consentDisallow">Disallow</button>
+                  <button type="button" class="button" id="consentLater">Maybe Later</button>
+                </div>
               </div>
 
               <button class="button button-primary submit-button"
@@ -1119,9 +1148,9 @@
               </p>
 
             </form>
-          </div>
+  </div>
 
-          <!-- SUCCESS MESSAGE -->
+              <!-- SUCCESS MESSAGE -->
           <div id="successPanel"
             class="success-panel"
             role="status"
@@ -1155,9 +1184,7 @@
 
             <p class="success-disclaimer">
               <strong>Submission note:</strong>
-              This message means your browser sent the submission
-              request. It does not independently verify that Google
-              Forms saved the response.
+              Your registration was confirmed by the PayFreeRewards server. Please keep your mobile number available for future updates.
             </p>
 
           </div>
@@ -1256,7 +1283,6 @@
     title="Waitlist submission response" style="display:none"></iframe>
 
   <script>
-    /* Paste the deployed Apps Script Web App URL here after deployment. */
     const WAITLIST_WEB_APP_URL = "https://script.google.com/macros/s/AKfycbzq2uXRw22R3MeG0e26X88Dt6T1m5Gnn8ruyl-3tUXAEQKlPIVjgzsRweVwfNKGhHcxBg/exec";
     const waitlistForm = document.getElementById("waitlistForm");
     const formContent = document.getElementById("formContent");
@@ -1265,129 +1291,125 @@
     const submitButton = document.getElementById("submitButton");
     const phoneInput = document.getElementById("phone");
     const responseFrame = document.getElementById("waitlistResponseFrame");
-
+    const consentPanel = document.getElementById("consentPanel");
     let submissionInProgress = false;
     let activeRequestId = "";
     let responseTimeout = null;
     let pendingPostForm = null;
+    let pendingData = null;
+    let pendingConsentAction = "";
+    let requestIsConsentRetry = false;
 
     document.getElementById("currentYear").textContent = new Date().getFullYear();
-
-    phoneInput.addEventListener("input", function () {
-      this.value = this.value.replace(/\D/g, "").slice(0, 10);
+    phoneInput.addEventListener("input", function () { this.value = this.value.replace(/\D/g, "").slice(0, 10); });
+    document.getElementById("rewardOtherToggle").addEventListener("change", function () {
+      document.getElementById("otherRewardsGroup").style.display = this.checked ? "block" : "none";
     });
 
-    window.addEventListener("message", function (event) {
-      const data = event.data;
-      if (!data || data.source !== "payfreerewards-waitlist" || data.requestId !== activeRequestId) return;
-
-      window.clearTimeout(responseTimeout);
-      if (pendingPostForm) pendingPostForm.remove();
-      pendingPostForm = null;
+    function getBrowserId() {
+      const key = "pfr_browser_id_v1";
+      let id = localStorage.getItem(key);
+      if (!id) {
+        id = (window.crypto && crypto.randomUUID) ? crypto.randomUUID() : String(Date.now()) + "-" + Math.random().toString(36).slice(2);
+        localStorage.setItem(key, id);
+      }
+      return id;
+    }
+    function showFormError(message, neutral) {
+      formError.textContent = message;
+      formError.style.display = "block";
+      formError.style.color = neutral ? "var(--muted)" : "#ff9c9c";
+      formError.style.borderColor = neutral ? "var(--border)" : "#e05b68";
+    }
+    function resetSubmitButton() {
       submissionInProgress = false;
-      activeRequestId = "";
       submitButton.disabled = false;
       submitButton.innerHTML = 'Join the Waitlist <span aria-hidden="true">→</span>';
-
-      if (data.status === "success") {
-        formError.style.display = "none";
-        formContent.style.display = "none";
-        successPanel.style.display = "block";
-        if (typeof gtag === "function") gtag("event", "waitlist_submit");
-        document.getElementById("waitlist").scrollIntoView({ behavior: "smooth", block: "start" });
-      } else if (data.status === "duplicate") {
-        showFormError("This mobile number is already registered on the PayFreeRewards waitlist.");
-        phoneInput.focus();
-      } else {
-        showFormError(data.message || "We could not process your registration. Please try again.");
-      }
-    });
-
-    waitlistForm.addEventListener("submit", function (event) {
-      event.preventDefault();
+    }
+    function sendRequest(data, consentAction) {
       if (submissionInProgress) return;
-      formError.style.display = "none";
-      formError.textContent = "";
-
-      const name = document.getElementById("fullName").value.trim();
-      const phone = phoneInput.value.trim();
-      const operator = document.getElementById("operator").value;
-
-      if (name.length < 2) {
-        showFormError("Please enter your full name.");
-        document.getElementById("fullName").focus();
-        return;
-      }
-      if (!/^[6-9][0-9]{9}$/.test(phone)) {
-        showFormError("Please enter a valid 10-digit Indian mobile number.");
-        phoneInput.focus();
-        return;
-      }
-      if (!["Jio", "Airtel", "Vi", "BSNL"].includes(operator)) {
-        showFormError("Please select your network operator.");
-        document.getElementById("operator").focus();
-        return;
-      }
-      if (WAITLIST_WEB_APP_URL === "PASTE_DEPLOYED_APPS_SCRIPT_WEB_APP_URL_HERE") {
-        showFormError("Waitlist setup is not complete yet. Please try again later.");
-        return;
-      }
-
       submissionInProgress = true;
-      activeRequestId = (window.crypto && crypto.randomUUID)
-        ? crypto.randomUUID()
-        : String(Date.now()) + "-" + Math.random().toString(36).slice(2);
+      activeRequestId = (window.crypto && crypto.randomUUID) ? crypto.randomUUID() : String(Date.now()) + "-" + Math.random().toString(36).slice(2);
       submitButton.disabled = true;
       submitButton.textContent = "Submitting securely...";
-
       try {
+        if (pendingPostForm) pendingPostForm.remove();
         pendingPostForm = document.createElement("form");
         pendingPostForm.method = "POST";
         pendingPostForm.action = WAITLIST_WEB_APP_URL;
         pendingPostForm.target = "waitlistResponseFrame";
         pendingPostForm.acceptCharset = "UTF-8";
         pendingPostForm.style.display = "none";
-
         const fields = [
-          ["name", name], ["phone", phone], ["operator", operator],
+          ["action", "register"], ["name", data.name], ["phone", data.phone],
+          ["operator", data.operator], ["city", data.city],
+          ["rewards", data.preferenceConsent ? data.rewards.join("|") : ""],
+          ["otherRewards", data.preferenceConsent ? data.otherRewards : ""],
+          ["monthlyRecharge", data.preferenceConsent ? data.monthlyRecharge : ""],
+          ["preferenceConsent", data.preferenceConsent ? "yes" : "no"],
+          ["browserId", getBrowserId()], ["consentAction", consentAction || ""],
           ["requestId", activeRequestId], ["website", ""]
         ];
         fields.forEach(function (field) {
-          const input = document.createElement("input");
-          input.type = "hidden";
-          input.name = field[0];
-          input.value = field[1];
-          pendingPostForm.appendChild(input);
+          const input = document.createElement("input"); input.type = "hidden"; input.name = field[0]; input.value = field[1]; pendingPostForm.appendChild(input);
         });
         document.body.appendChild(pendingPostForm);
         pendingPostForm.submit();
-
         responseTimeout = window.setTimeout(function () {
-          if (pendingPostForm) pendingPostForm.remove();
-          pendingPostForm = null;
-          submissionInProgress = false;
-          activeRequestId = "";
-          submitButton.disabled = false;
-          submitButton.innerHTML = 'Join the Waitlist <span aria-hidden="true">→</span>';
-          showFormError("No response received. Please wait before retrying to avoid a duplicate request.");
-        }, 15000);
+          if (pendingPostForm) pendingPostForm.remove(); pendingPostForm = null; activeRequestId = ""; resetSubmitButton();
+          showFormError("No confirmation was received. Your submission may have reached the server; check before retrying to avoid a duplicate.");
+        }, 25000);
       } catch (error) {
-        window.clearTimeout(responseTimeout);
-        if (pendingPostForm) pendingPostForm.remove();
-        pendingPostForm = null;
-        submissionInProgress = false;
-        activeRequestId = "";
-        submitButton.disabled = false;
-        submitButton.innerHTML = 'Join the Waitlist <span aria-hidden="true">→</span>';
-        showFormError("We could not send the request. Please try again.");
-        console.error("PayFreeRewards waitlist submission error:", error);
+        window.clearTimeout(responseTimeout); if (pendingPostForm) pendingPostForm.remove(); pendingPostForm = null; activeRequestId = ""; resetSubmitButton();
+        showFormError("We could not send the request. Please try again."); console.error(error);
+      }
+    }
+    window.addEventListener("message", function (event) {
+      if (event.source !== responseFrame.contentWindow) return;
+      const data = event.data;
+      if (!data || data.source !== "payfreerewards-waitlist" || data.requestId !== activeRequestId) return;
+      window.clearTimeout(responseTimeout); if (pendingPostForm) pendingPostForm.remove(); pendingPostForm = null;
+      activeRequestId = ""; resetSubmitButton();
+      if (data.status === "consent_required") {
+        consentPanel.style.display = "block"; consentPanel.scrollIntoView({behavior:"smooth",block:"center"}); return;
+      }
+      if (data.status === "later") {
+        consentPanel.style.display = "none"; showFormError("No problem. Your details have not been submitted. You can decide later and submit again.", true); return;
+      }
+      consentPanel.style.display = "none";
+      if (data.status === "success") {
+        formError.style.display = "none"; formContent.style.display = "none"; successPanel.style.display = "block";
+        if (typeof gtag === "function") gtag("event", "waitlist_submit");
+        document.getElementById("waitlist").scrollIntoView({behavior:"smooth",block:"start"});
+      } else if (data.status === "duplicate") {
+        showFormError("This mobile number is already registered on the PayFreeRewards waitlist."); phoneInput.focus();
+      } else {
+        showFormError(data.message || "We could not process your registration. Please try again.");
       }
     });
-
-    function showFormError(message) {
-      formError.textContent = message;
-      formError.style.display = "block";
-    }
+    waitlistForm.addEventListener("submit", function (event) {
+      event.preventDefault(); if (submissionInProgress) return;
+      formError.style.display = "none"; formError.textContent = "";
+      const data = {
+        name: document.getElementById("fullName").value.trim(),
+        phone: phoneInput.value.trim(),
+        operator: document.getElementById("operator").value,
+        city: document.getElementById("city").value.trim(),
+        rewards: Array.from(waitlistForm.querySelectorAll('input[name="rewards"]:checked')).map(x => x.value),
+        otherRewards: document.getElementById("otherRewards").value.trim(),
+        monthlyRecharge: document.getElementById("monthlyRecharge").value,
+        preferenceConsent: document.getElementById("preferenceConsent").checked
+      };
+      if (data.name.length < 2) { showFormError("Please enter your full name."); document.getElementById("fullName").focus(); return; }
+      if (!/^[6-9][0-9]{9}$/.test(data.phone)) { showFormError("Please enter a valid 10-digit Indian mobile number."); phoneInput.focus(); return; }
+      if (!["Jio","Airtel","Vi","BSNL","None of these"].includes(data.operator)) { showFormError("Please select your network operator."); document.getElementById("operator").focus(); return; }
+      if (!data.city || data.city.length < 2) { showFormError("Please enter your city."); document.getElementById("city").focus(); return; }
+      if (WAITLIST_WEB_APP_URL.indexOf("/exec") === -1) { showFormError("Waitlist setup is not complete yet. Please try again later."); return; }
+      pendingData = data; pendingConsentAction = ""; sendRequest(data, "");
+    });
+    document.getElementById("consentAllow").addEventListener("click", function () { if (pendingData) { consentPanel.style.display = "none"; sendRequest(pendingData, "allow"); } });
+    document.getElementById("consentDisallow").addEventListener("click", function () { if (pendingData) { consentPanel.style.display = "none"; sendRequest(pendingData, "disallow"); } });
+    document.getElementById("consentLater").addEventListener("click", function () { consentPanel.style.display = "none"; showFormError("No problem. Your details have not been submitted. You can decide later and submit again.", true); });
   </script>
 
 </body>
