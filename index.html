@@ -1365,8 +1365,10 @@
       }
     }
     window.addEventListener("message", function (event) {
-      if (event.source !== responseFrame.contentWindow) return;
-      const data = event.data;
+      if (
+  event.source !== responseFrame.contentWindow &&
+  event.source !== window
+) return;
       if (!data || data.source !== "payfreerewards-waitlist" || data.requestId !== activeRequestId) return;
       window.clearTimeout(responseTimeout); if (pendingPostForm) pendingPostForm.remove(); pendingPostForm = null;
       activeRequestId = ""; resetSubmitButton();
