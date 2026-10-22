@@ -378,7 +378,7 @@
       color: var(--muted);
       font-size: 14px;
       line-height: 1.8;
-    }
+      }
 
     /* WAITLIST */
 
@@ -1004,7 +1004,7 @@
       </div>
     </section>
 
-    <!-- ABOUT -->
+       <!-- ABOUT -->
     <section class="content-section">
       <div class="container">
 
@@ -1148,9 +1148,9 @@
               </p>
 
             </form>
-  </div>
+          </div>
 
-              <!-- SUCCESS MESSAGE -->
+          <!-- SUCCESS MESSAGE -->
           <div id="successPanel"
             class="success-panel"
             role="status"
@@ -1178,7 +1178,7 @@
             <a class="button instagram-button"
               href="https://www.instagram.com/payfree_rewards/"
               target="_blank" rel="noopener noreferrer">
-              Follow @payfree_rewards
+              Follow Us for More Updates
               <span aria-hidden="true">↗</span>
             </a>
 
@@ -1281,8 +1281,8 @@
   <!-- Hidden iframe receives the Apps Script response. -->
   <iframe name="waitlistResponseFrame" id="waitlistResponseFrame"
     title="Waitlist submission response" style="display:none"></iframe>
-
-  <script>
+  
+      <script>
     const WAITLIST_WEB_APP_URL = "https://script.google.com/macros/s/AKfycbzq2uXRw22R3MeG0e26X88Dt6T1m5Gnn8ruyl-3tUXAEQKlPIVjgzsRweVwfNKGhHcxBg/exec";
     const waitlistForm = document.getElementById("waitlistForm");
     const formContent = document.getElementById("formContent");
@@ -1320,6 +1320,9 @@
       formError.style.display = "block";
       formError.style.color = neutral ? "var(--muted)" : "#ff9c9c";
       formError.style.borderColor = neutral ? "var(--border)" : "#e05b68";
+      window.setTimeout(function () {
+        formError.scrollIntoView({ behavior: "smooth", block: "center" });
+      }, 50);
     }
     function resetSubmitButton() {
       submissionInProgress = false;
@@ -1356,19 +1359,23 @@
         document.body.appendChild(pendingPostForm);
         pendingPostForm.submit();
         responseTimeout = window.setTimeout(function () {
-          if (pendingPostForm) pendingPostForm.remove(); pendingPostForm = null; activeRequestId = ""; resetSubmitButton();
-          showFormError("No confirmation was received. Your submission may have reached the server; check before retrying to avoid a duplicate.");
-        }, 25000);
+          // Keep the request active so a delayed server reply can still confirm it.
+          submitButton.textContent = "Still confirming...";
+          showFormError("Your registration is taking longer than usual to confirm. Please do not submit again; we are still checking the server response.", true);
+          responseTimeout = window.setTimeout(function () {
+            // A late reply is still accepted because activeRequestId remains intact.
+            resetSubmitButton();
+            showFormError("We have not received confirmation yet. Your details may already be saved, so please contact us before trying again to avoid a duplicate.");
+          }, 15000);
+        }, 10000);
       } catch (error) {
         window.clearTimeout(responseTimeout); if (pendingPostForm) pendingPostForm.remove(); pendingPostForm = null; activeRequestId = ""; resetSubmitButton();
         showFormError("We could not send the request. Please try again."); console.error(error);
       }
     }
     window.addEventListener("message", function (event) {
-      if (
-  event.source !== responseFrame.contentWindow &&
-  event.source !== window
-) return;
+      if (event.source !== responseFrame.contentWindow) return;
+      const data = event.data;
       if (!data || data.source !== "payfreerewards-waitlist" || data.requestId !== activeRequestId) return;
       window.clearTimeout(responseTimeout); if (pendingPostForm) pendingPostForm.remove(); pendingPostForm = null;
       activeRequestId = ""; resetSubmitButton();
@@ -1382,7 +1389,9 @@
       if (data.status === "success") {
         formError.style.display = "none"; formContent.style.display = "none"; successPanel.style.display = "block";
         if (typeof gtag === "function") gtag("event", "waitlist_submit");
-        document.getElementById("waitlist").scrollIntoView({behavior:"smooth",block:"start"});
+        window.setTimeout(function () {
+          successPanel.scrollIntoView({behavior:"smooth",block:"center"});
+        }, 80);
       } else if (data.status === "duplicate") {
         showFormError("This mobile number is already registered on the PayFreeRewards waitlist."); phoneInput.focus();
       } else {
