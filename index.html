@@ -378,7 +378,7 @@
       color: var(--muted);
       font-size: 14px;
       line-height: 1.8;
-      }
+    }
 
     /* WAITLIST */
 
@@ -855,7 +855,7 @@
           <div class="hero-actions">
 
             <a class="button button-primary" href="#waitlist">
-              Join the Waitlist <span aria-hidden="true">→</span>
+              Join the Waitlist <span aria-hidden="true">â†’</span>
             </a>
 
             <a class="button button-secondary"
@@ -867,7 +867,7 @@
           </div>
 
           <p class="hero-note">
-            Free to register · No email required · Pre-launch stage
+            Free to register Â· No email required Â· Pre-launch stage
           </p>
 
         </div>
@@ -926,7 +926,7 @@
           </p>
 
           <div class="preview-feature">
-            <div class="feature-icon">✓</div>
+            <div class="feature-icon">âœ“</div>
             <div class="feature-text">
               <strong>Join the Waitlist</strong>
               <span>Register your interest in a few simple steps.</span>
@@ -934,7 +934,7 @@
           </div>
 
           <div class="preview-feature">
-            <div class="feature-icon">↗</div>
+            <div class="feature-icon">â†—</div>
             <div class="feature-text">
               <strong>Stay Connected</strong>
               <span>Follow our official channels for announcements.</span>
@@ -942,7 +942,7 @@
           </div>
 
           <div class="preview-feature">
-            <div class="feature-icon">◎</div>
+            <div class="feature-icon">â—Ž</div>
             <div class="feature-text">
               <strong>Future Updates</strong>
               <span>Confirmed details will be shared when available.</span>
@@ -1004,7 +1004,7 @@
       </div>
     </section>
 
-       <!-- ABOUT -->
+    <!-- ABOUT -->
     <section class="content-section">
       <div class="container">
 
@@ -1046,7 +1046,7 @@
             </p>
 
             <div class="privacy-note">
-              <span aria-hidden="true">🔐</span>
+              <span aria-hidden="true">ðŸ”</span>
               <div>
                 We ask for your details to manage your waitlist
                 registration and communicate relevant updates.
@@ -1091,7 +1091,7 @@
               </div>
 
               <div class="form-group">
-                <label>Preferred Rewards <span class="form-hint">Optional — select all that interest you.</span></label>
+                <label>Preferred Rewards <span class="form-hint">Optional â€” select all that interest you.</span></label>
                 <div class="preference-options">
                   <label><input type="checkbox" name="rewards" value="Mobile Recharge"> Mobile Recharge</label>
                   <label><input type="checkbox" name="rewards" value="Bill Payments"> Bill Payments</label>
@@ -1110,10 +1110,10 @@
                 <label for="monthlyRecharge">Monthly Mobile Recharge Range <span class="form-hint">Optional</span></label>
                 <select class="form-control" id="monthlyRecharge">
                   <option value="">Prefer not to say</option>
-                  <option value="₹0–₹199">₹0–₹199</option>
-                  <option value="₹200–₹499">₹200–₹499</option>
-                  <option value="₹500–₹999">₹500–₹999</option>
-                  <option value="₹1,000 or more">₹1,000 or more</option>
+                  <option value="â‚¹0â€“â‚¹199">â‚¹0â€“â‚¹199</option>
+                  <option value="â‚¹200â€“â‚¹499">â‚¹200â€“â‚¹499</option>
+                  <option value="â‚¹500â€“â‚¹999">â‚¹500â€“â‚¹999</option>
+                  <option value="â‚¹1,000 or more">â‚¹1,000 or more</option>
                 </select>
               </div>
 
@@ -1137,7 +1137,7 @@
 
               <button class="button button-primary submit-button"
                 type="submit" id="submitButton">
-                Join the Waitlist <span aria-hidden="true">→</span>
+                Join the Waitlist <span aria-hidden="true">â†’</span>
               </button>
 
               <p class="fine-print">
@@ -1156,7 +1156,7 @@
             role="status"
             aria-live="polite">
 
-            <div class="success-icon" aria-hidden="true">✓</div>
+            <div class="success-icon" aria-hidden="true">âœ“</div>
 
             <h2>
               Thanks for your <span class="gradient-text">interest!</span>
@@ -1164,11 +1164,11 @@
 
             <p>
               Thank you for joining the PayFreeRewards waitlist.
-              We’re glad to have you as part of our growing community.
+              Weâ€™re glad to have you as part of our growing community.
             </p>
 
             <div class="success-highlight">
-              <strong>📢 Stay Connected With Us</strong>
+              <strong>ðŸ“¢ Stay Connected With Us</strong>
               <p>
                 Follow PayFreeRewards on Instagram to stay informed
                 about announcements and future launch updates.
@@ -1179,7 +1179,7 @@
               href="https://www.instagram.com/payfree_rewards/"
               target="_blank" rel="noopener noreferrer">
               Follow Us for More Updates
-              <span aria-hidden="true">↗</span>
+              <span aria-hidden="true">â†—</span>
             </a>
 
             <p class="success-disclaimer">
@@ -1271,7 +1271,7 @@
       </p>
 
       <p class="copyright">
-        © <span id="currentYear">2026</span> PayFreeRewards.
+        Â© <span id="currentYear">2026</span> PayFreeRewards.
         All rights reserved.
       </p>
 
@@ -1281,8 +1281,8 @@
   <!-- Hidden iframe receives the Apps Script response. -->
   <iframe name="waitlistResponseFrame" id="waitlistResponseFrame"
     title="Waitlist submission response" style="display:none"></iframe>
-  
-      <script>
+
+  <script>
     const WAITLIST_WEB_APP_URL = "https://script.google.com/macros/s/AKfycbzq2uXRw22R3MeG0e26X88Dt6T1m5Gnn8ruyl-3tUXAEQKlPIVjgzsRweVwfNKGhHcxBg/exec";
     const waitlistForm = document.getElementById("waitlistForm");
     const formContent = document.getElementById("formContent");
@@ -1327,7 +1327,7 @@
     function resetSubmitButton() {
       submissionInProgress = false;
       submitButton.disabled = false;
-      submitButton.innerHTML = 'Join the Waitlist <span aria-hidden="true">→</span>';
+      submitButton.innerHTML = 'Join the Waitlist <span aria-hidden="true">â†’</span>';
     }
     function sendRequest(data, consentAction) {
       if (submissionInProgress) return;
@@ -1363,9 +1363,10 @@
           submitButton.textContent = "Still confirming...";
           showFormError("Your registration is taking longer than usual to confirm. Please do not submit again; we are still checking the server response.", true);
           responseTimeout = window.setTimeout(function () {
-            // A late reply is still accepted because activeRequestId remains intact.
-            resetSubmitButton();
-            showFormError("We have not received confirmation yet. Your details may already be saved, so please contact us before trying again to avoid a duplicate.");
+            // Keep submit disabled: a timeout cannot tell us whether Google Forms saved it.
+            submitButton.disabled = true;
+            submitButton.textContent = "Awaiting confirmation";
+            showFormError("We have not received confirmation yet. Your details may already be saved. Please do not submit again; contact PayFreeRewards to check your registration.");
           }, 15000);
         }, 10000);
       } catch (error) {
@@ -1374,7 +1375,14 @@
       }
     }
     window.addEventListener("message", function (event) {
-      if (event.source !== responseFrame.contentWindow) return;
+      // HtmlService responses run inside a nested Google sandbox iframe, so the
+      // message source is not necessarily responseFrame.contentWindow. Restrict
+      // accepted messages to Google Apps Script origins and the active random ID.
+      const origin = String(event.origin || "");
+      const trustedGoogleOrigin = origin === "https://script.google.com" ||
+        origin === "https://script.googleusercontent.com" ||
+        (origin.startsWith("https://") && origin.endsWith(".googleusercontent.com"));
+      if (!trustedGoogleOrigin) return;
       const data = event.data;
       if (!data || data.source !== "payfreerewards-waitlist" || data.requestId !== activeRequestId) return;
       window.clearTimeout(responseTimeout); if (pendingPostForm) pendingPostForm.remove(); pendingPostForm = null;
